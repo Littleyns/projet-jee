@@ -57,3 +57,4 @@ The goal "verify" (which triggers the maven-surefire-plugin) is executed later i
 artifacts ("projet-ejb.jar" and "projet-web.war") are already built. You can build
 the final EAR by including those files. The "maven-surefire-plugin" is executed before the JAR/WAR files
 are created, so those JAR/WAR files would have to be built in the "@Deployment" method, too. 
+Nice!!!

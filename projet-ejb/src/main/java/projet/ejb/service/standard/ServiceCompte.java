@@ -15,6 +15,7 @@ import projet.commun.exception.ExceptionValidation;
 import projet.commun.service.IServiceCompte;
 import projet.ejb.dao.IDaoCompte;
 import projet.ejb.data.Compte;
+import projet.ejb.data.mapper.ApiDataMapper;
 import projet.ejb.data.mapper.IMapperEjb;
 
 @Stateless
@@ -26,6 +27,7 @@ public class ServiceCompte implements IServiceCompte {
 	private IMapperEjb mapper;
 	@Inject
 	private IDaoCompte daoCompte;
+
 
 	// Actions
 

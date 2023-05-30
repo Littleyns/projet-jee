@@ -22,7 +22,6 @@
              </a>
            </div>
          </li>
- 
     <li class="item">
 
            <div class="showcase_box">
@@ -59,64 +58,23 @@
           <h2 class="latest_heading">TOP SELLERS BOOKS 2023</h2>
  
 
- <div class="books_container"></div>
+ <div class="books_container">
+ 	<ui:repeat value="#{modelHome.livres}" var="livre">
+   <ul  class="books-ln cs-hidden">
+   	<li>
+   	<div class="latest_box"> 
+   	<div class="latest_b_img"><h:graphicImage url="${livre.image}" alt="${livre.nom}"></h:graphicImage></div>
+   	<div class="latest_b_text">
+   		<strong><h:outputText value="${livre.nom}"></h:outputText></strong>
+   		<p class="authors"><h:outputText value="${livre.author}"></h:outputText></p>
+   	</div>
+   	</div></li>
+   	</ul>
+</ui:repeat>
+ </div>
  
     </section>
  
-
-  
-  <div class="audio-heading">
-       <h1>Audio Books</h1>
-     </div>
-      <div class="camera" style="display:none">
-</div>
-   
-
-     <section id="audio-list">
-            <div class="audio-box">
-
-         <div class="audio-img">
-           <img
-             src="https://images-na.ssl-images-amazon.com/images/I/71l0VzFKUYL._AC_SL1000_.jpg"
-             alt=""
-           />
-         </div>
-         <a href="http://www.loyalbooks.com/book/the-pilgrims-progress-by-john-bunyan"  target="_blank">
-          The Pilgrim's Progress
-         </a>
-       </div>
-   
- 
-        <div class="audio-box">
- 
-         <div class="audio-img">
-         
-           <img
-             src="https://kickasstrips.com/wp-content/uploads/2014/06/around-80days.jpg"
-             alt=""
-           />
-         </div>
-         <a href="http://www.loyalbooks.com/book/around-the-world-in-eighty-days-by-jules-verne"  target="_blank">
-          Around The world in Eighty Days
-         </a>
-       </div>
-          <div class="audio-box">
- 
-         <div class="audio-img" >
-           <img
-             src="https://i.pinimg.com/originals/d6/65/cb/d665cb3b5ba71b034accb6807622fdf6.jpg"
-             alt=""
-           />
-         </div>
-         <a href="http://www.loyalbooks.com/book/war-of-the-worlds-solo-by-h-g-wells" target="_blank">
- The War of the Worlds
-    </a>
-       </div>
-       
- 
-    
-  
- </section>
 
 	</ui:define>
 

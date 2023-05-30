@@ -58,7 +58,7 @@ public class ModelConnexion {
 	        
 	    	modelInfo.setTitre( "Bienvenue" );
 	    	modelInfo.setTexte( "Vous êtes connecté en tant que '" + courant.getPseudo() +"'.");
-		    return "info";
+		    return "home";
 
 	    } else {
 	        UtilJsf.messageError( "Pseudo ou mot de passe invalide." );

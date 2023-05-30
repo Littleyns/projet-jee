@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">>
+<f:metadata>
+		<f:viewAction action="#{utilJsf.messageFromRequestAttribute()}" />
+	</f:metadata>
+<h:head>
+<h:outputStylesheet name="popup.css" library="css" />
+</h:head>
+		<div class="overlay"></div>
+		<div id="popup_container">
+			<!--Bouton fermer -->
+			<div id="popup_header">
+
+				<!--Bouton fermer -->
+				<!--Titre du Livre -->
+
+				<h2 id="titlePop"></h2>
+				<button type="button" class="btn-close close" aria-label="Close"></button>
+			</div>
+			<!--Titre du Livre -->
+
+			<div id="midPop">
+				<!--Image du livre -->
+				<img id="imgPop" />
+
+
+				<!--Image du livre -->
+
+
+				<!-- bloc information livre;auteur,description lien....-->
+				<div id="informations">
+
+					<input id="isbn" style="display: none;" name="isbn"></input>
+					<ul>
+						<li id="authors"></li>
+						<li id="description"></li>
+						<li id="links"></li>
+						<li id="links2"></li>
+
+						</ul>
+							<div id="favorite-alerts">
+								<div class="alert alert-light" id="success-favorites-add">
+									Book have been <strong>added</strong> to your favorites.
+								</div>
+								<div class="alert alert-light" id="success-favorites-remove">
+									Book have been <strong>removed</strong> from your favorites.
+								</div>
+							</div>
+				</div>
+
+				<br/> <!--Image du livre -->
+				<div id="commentaryArea">
+
+					<!-- affichage des commentaires Sql -->
+
+
+				</div>
+
+			</div>
+
+
+
+
+
+
+		</div>
+
+<h:outputScript name="popup.js" library="js" />
+</ui:composition>
+

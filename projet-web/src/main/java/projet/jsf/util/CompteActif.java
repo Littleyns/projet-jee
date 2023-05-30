@@ -28,7 +28,7 @@ public class CompteActif extends Compte {
 	public String disconnect() {
 	    UtilJsf.sessionInvalidate();
         UtilJsf.messageInfo( "Vous avez été déconnecté" );
-	    return "connexion";
+	    return "login";
 	}
 
 }

@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition template="/template/page-standard.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">>
+<f:metadata>
+		<f:viewAction action="#{utilJsf.messageFromRequestAttribute()}" />
+	</f:metadata>
+
+	<ui:define name="titre">Genres</ui:define>
+
+	<ui:define name="contenu">
+		<h2 class="latest_heading">IT-BOOKS</h2>
+
+		<div id="IT_books"></div>
+
+		<section class="latest">
+			<h2 class="latest_heading">Romance</h2>
+
+			<div id="romance"></div>
+		</section>
+
+		<section class="latest">
+
+			<h2 class="latest_heading">Sci-Fiction</h2>
+
+			<div id="scifiction"></div>
+		</section>
+
+		<section class="latest">
+			<h2 class="latest_heading">Thriller</h2>
+
+			<div id="thriller"></div>
+		</section>
+
+		
+		<section class="latest">
+			<h2 class="latest_heading">Manga</h2>
+
+			<div id="manga"></div>
+		</section>
+  <h:outputScript name="genres.js" library="js" />
+	</ui:define>
+
+</ui:composition>
+

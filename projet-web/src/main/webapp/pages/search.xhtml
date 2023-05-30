@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition template="/template/page-standard.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">>
+<f:metadata>
+		<f:viewAction action="#{utilJsf.messageFromRequestAttribute()}" />
+	</f:metadata>
+	<ui:define name="titre">Search</ui:define>
+
+	<ui:define name="contenu">
+		<div class="overlay"></div>
+		<div class="popup"></div>
+
+		<div class="search">
+			<div class="row mt-5" id="Search-bar">
+				<div class="col-md-6 m-auto">
+
+					<h1 class="text-center mb-4" id="title">Search a book here</h1>
+
+					<div class="form-group">
+
+						<input type="text" id="search" name="search" class="form-control"
+							placeholder="Ex: JavaScript , Machine learning , Python programming...!" />
+
+						<button class="btn btn-dark" id="enter">Search</button>
+					</div>
+
+
+				</div>
+			</div>
+			<div id="book-list"></div>
+
+		</div>
+		  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <h:outputScript name="search.js" library="js" />
+	</ui:define>
+
+</ui:composition>
+

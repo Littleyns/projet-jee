@@ -15,7 +15,7 @@ public interface IServiceLivres {
 
 	void			supprimer( int idLivre ) throws ExceptionValidation;
 
-	DtoLivre 		retrouver( int idLivre ) ;
+	DtoLivre 		retrouver( String isbn ) ;
 
 	List<DtoLivre>	listerTout() ;
 

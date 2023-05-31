@@ -56,9 +56,6 @@ async function renderBooks() {
     imgElement = $('<img></img>');
     imgElement.attr("src",api.book_image);
     imgElement.attr("alt",api.title);
-    imgElement.click(function() {
-      openPopup(api.isbns[0].isbn13,api.title,api.book_image,api.author,api.description,api.buy_links[0].url,api.buy_links[1].url)
-    });
     ulElement.find(".latest_b_img").append(imgElement);
     ulElement.find(".latest_b_text").append(titleElement);
   ulElement.find(".latest_b_text").append(authorElement);

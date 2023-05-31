@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -31,6 +33,8 @@ public class ModelHome implements Serializable {
 	private IServiceLivres serviceLivres;
 	@Inject
 	private IMapper			mapper;
+	
+	private Livre selectedBook;
 
 	// Getters 
 	
@@ -42,6 +46,22 @@ public class ModelHome implements Serializable {
 			}
 		}
 		return livres;
+	}
+	public String openPopup(Livre livre) {
+	    this.selectedBook = livre;
+	    System.out.println(livre.getNom());
+	    return null;
+	}
+	public Livre getSelectedBook() {
+		return selectedBook;
+	}
+	public void setSelectedBook(Livre selectedBook) {
+		this.selectedBook = selectedBook;
+	}
+	
+	public boolean isPopupOpen() {
+		System.out.println("loool");
+		return this.selectedBook != null;
 	}
 
 	}	

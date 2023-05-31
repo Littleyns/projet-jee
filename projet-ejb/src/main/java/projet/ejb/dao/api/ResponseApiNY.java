@@ -1,4 +1,4 @@
-package projet.ejb.dao.jpa;
+package projet.ejb.dao.api;
 
 import java.util.List;
 

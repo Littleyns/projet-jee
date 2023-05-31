@@ -16,7 +16,8 @@ import projet.commun.exception.ExceptionValidation;
 import projet.commun.service.IServiceLivres;
 import projet.ejb.dao.IDaoApiLivres;
 import projet.ejb.dao.IDaoCompte;
-import projet.ejb.dao.jpa.ResponseApiNY;
+import projet.ejb.dao.api.ResponseApiGGL;
+import projet.ejb.dao.api.ResponseApiNY;
 import projet.ejb.data.Compte;
 import projet.ejb.data.mapper.ApiDataMapper;
 import projet.ejb.data.mapper.IMapperEjb;
@@ -48,9 +49,9 @@ public class ServiceLivre implements IServiceLivres {
 		
 	}
 	@Override
-	public DtoLivre retrouver(int idLivre) {
-		// TODO Auto-generated method stub
-		return null;
+	public DtoLivre retrouver(String isbn) {
+		ResponseApiGGL responseApiGGL= daoApiLivres.getGGLApiBook(isbn);
+		return apiMapper.mapGGL(responseApiGGL.getItems()[0].getVolumeInfo());
 	}
 	@Override
 	public List<DtoLivre> listerTout() {

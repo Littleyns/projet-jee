@@ -4,7 +4,7 @@
 flex-direction: column;
  top:7vh;
  left:20vw;
-  
+  height:auto!important;
   z-index:999;
 width:60vw;
 max-height:90vh;
@@ -12,7 +12,6 @@ max-height:90vh;
   border-radius:10px;
   box-shadow: 5px 5px 5px black; 
   padding:10px;
-visibility:hidden
 }
 .popup{
   visibility:hidden;
@@ -126,24 +125,25 @@ margin-left:-22px;
 
 }
 
- #favorite~label{
+ .favorite-heart~label{
   font-size:35px !important;
   width:1em;
   
 }
-#favorite~label::before {
+ .favorite-heart~label::before {
     content: "\2764";
     position: absolute;
    font-size:36px !important;
     width:1em;
     opacity: 0;
+    margin-left:-10px;
 }
 
-#favorite~label:hover:before,
-#favorite~label:hover~label:before {
+ .favorite-heart~label:hover:before,
+ .favorite-heart~label:hover~label:before {
     opacity: 1 !important;
 }
-#favorite:checked~label:before {
+ .favorite-heart:checked~label:before {
     opacity: 1;
 } 
 .rating {

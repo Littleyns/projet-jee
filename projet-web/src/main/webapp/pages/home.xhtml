@@ -3,7 +3,11 @@
      xmlns="http://www.w3.org/1999/xhtml"
      xmlns:h="http://java.sun.com/jsf/html"
      xmlns:f="http://java.sun.com/jsf/core"
-     xmlns:ui="http://java.sun.com/jsf/facelets">>
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+     xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+     >
+     
+     
 <f:metadata>
 	<f:viewAction action="#{utilJsf.messageFromRequestAttribute()}" />
 </f:metadata>
@@ -13,6 +17,7 @@
     <ui:define name="contenu">
 <section id="main">
        <h1 class="showcase_heading" >Bookstore Online</h1>
+       <ui:include src="../components/popup.xhtml" />
  <ul id="autoWidth" class="cs-hidden">
    <li class="item">
    <div class="showcase_box">
@@ -59,11 +64,18 @@
  
 
  <div class="books_container">
- 	<ui:repeat value="#{modelHome.livres}" var="livre">
+  
+ <h:form>
+
+ 	<ui:repeat value="${modelHome.livres}" var="livre">
    <ul  class="books-ln cs-hidden">
    	<li>
    	<div class="latest_box"> 
-   	<div class="latest_b_img"><h:graphicImage url="${livre.image}" alt="${livre.nom}"></h:graphicImage></div>
+   	 	 	<h:commandLink action="${modelHome.openPopup(livre)}" onclick="popup.show()">
+ 	 		<f:ajax render="popup_container" />
+ 	 			<div class="latest_b_img"><h:graphicImage url="${livre.image}" alt="${livre.nom}"></h:graphicImage></div>
+		</h:commandLink>
+   
    	<div class="latest_b_text">
    		<strong><h:outputText value="${livre.nom}"></h:outputText></strong>
    		<p class="authors"><h:outputText value="${livre.author}"></h:outputText></p>
@@ -71,6 +83,7 @@
    	</div></li>
    	</ul>
 </ui:repeat>
+</h:form>
  </div>
  
     </section>

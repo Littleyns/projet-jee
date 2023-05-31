@@ -11,36 +11,46 @@
 	<ui:define name="titre">Genres</ui:define>
 
 	<ui:define name="contenu">
-		<h2 class="latest_heading">IT-BOOKS</h2>
+	<ui:include src="../components/popup.xhtml" />
+	 <h:form>
+		<ui:repeat value="#{modelGenres.livresParCategories.entrySet()}"
+			var="entry">
+			<section class="latest">
+				<h2 class="latest_heading">
+					<h:outputText value="#{entry.key}"></h:outputText>
+				</h2>
+				<div>
+					<ui:repeat value="#{entry.value}" var="livre">
+						<ul class="books-ln cs-hidden">
+							<li>
+								<div class="latest_box">
+									<div class="latest_b_img">
+										<h:commandLink action="${modelHome.openPopup(livre)}"
+											onclick="popup.show()">
+											<f:ajax render="popup_container" />
+											<div class="latest_b_img">
+												<h:graphicImage url="${livre.image}" alt="${livre.nom}"></h:graphicImage>
+											</div>
+										</h:commandLink>
+									</div>
+									<div class="latest_b_text">
+										<strong><h:outputText value="${livre.nom}"></h:outputText></strong>
+										<p class="authors">
+											<h:outputText value="${livre.author}"></h:outputText>
+										</p>
+									</div>
+								</div>
+							</li>
 
-		<div id="IT_books"></div>
+						</ul>
 
-		<section class="latest">
-			<h2 class="latest_heading">Romance</h2>
+					</ui:repeat>
+				</div>
+			</section>
+		</ui:repeat>
 
-			<div id="romance"></div>
-		</section>
-
-		<section class="latest">
-
-			<h2 class="latest_heading">Sci-Fiction</h2>
-
-			<div id="scifiction"></div>
-		</section>
-
-		<section class="latest">
-			<h2 class="latest_heading">Thriller</h2>
-
-			<div id="thriller"></div>
-		</section>
-
-		
-		<section class="latest">
-			<h2 class="latest_heading">Manga</h2>
-
-			<div id="manga"></div>
-		</section>
-  <h:outputScript name="genres.js" library="js" />
+</h:form>
+		<h:outputScript name="genres.js" library="js" />
 	</ui:define>
 
 </ui:composition>

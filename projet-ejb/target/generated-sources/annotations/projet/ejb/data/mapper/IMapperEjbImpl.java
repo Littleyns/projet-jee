@@ -9,7 +9,7 @@ import projet.ejb.data.Compte;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-05-30T12:48:22+0200",
+    date = "2023-05-30T16:58:34+0200",
     comments = "version: 1.5.3.Final, compiler: Eclipse JDT (IDE) 1.4.100.v20220318-0906, environment: Java 18.0.2 (Eclipse Adoptium)"
 )
 @ApplicationScoped

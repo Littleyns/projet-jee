@@ -5,11 +5,13 @@ import java.util.List;
 import javax.annotation.processing.Generated;
 import javax.enterprise.context.ApplicationScoped;
 import projet.commun.dto.DtoCompte;
+import projet.commun.dto.DtoLivre;
 import projet.jsf.data.Compte;
+import projet.jsf.data.Livre;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-05-30T16:58:36+0200",
+    date = "2023-05-31T14:12:53+0200",
     comments = "version: 1.5.3.Final, compiler: Eclipse JDT (IDE) 1.4.100.v20220318-0906, environment: Java 18.0.2 (Eclipse Adoptium)"
 )
 @ApplicationScoped
@@ -105,5 +107,27 @@ public class IMapperImpl implements IMapper {
         }
 
         return target;
+    }
+
+    @Override
+    public Livre map(DtoLivre dtoLivre) {
+        if ( dtoLivre == null ) {
+            return null;
+        }
+
+        Livre livre = new Livre();
+
+        livre.setId( dtoLivre.getId() );
+        livre.setNom( dtoLivre.getNom() );
+        livre.setResume( dtoLivre.getResume() );
+        livre.setCategorie( dtoLivre.getCategorie() );
+        livre.setImage( dtoLivre.getImage() );
+        List<String> list = dtoLivre.getReplies();
+        if ( list != null ) {
+            livre.setReplies( new ArrayList<String>( list ) );
+        }
+        livre.setAuthor( dtoLivre.getAuthor() );
+
+        return livre;
     }
 }

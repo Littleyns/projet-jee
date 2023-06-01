@@ -241,8 +241,9 @@ box-shadow: 5px 5px 5px #383838;
 text-shadow:none;
 }
 
-.header_connect{
-  padding-left:150px;
+#notif_container{
+	display:flex;
+	align-items:center;
 }
 .user_name{
   margin-top:-20px;
@@ -267,4 +268,7 @@ svg.bi.bi-bell-fill{
 }
 .showBell{
   opacity:1!important;
+}
+.header_connect{
+	margin-left:2%;
 }

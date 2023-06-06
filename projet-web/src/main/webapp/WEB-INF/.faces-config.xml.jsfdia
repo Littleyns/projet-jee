@@ -17,13 +17,21 @@
    <PROCESS-ITEM-OUTPUT ID="profil::#pages#profil.xhtml" NAME="output4"
     PATH="/pages/profil.xhtml" TARGET="rules:#pages#profil.xhtml"
     TITLE="profil" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT ID="info::#pages#info.xhtml" NAME="output5"
+   <PROCESS-ITEM-OUTPUT ID="comptes::#pages#admin#compte#liste.xhtml"
+    NAME="output5" PATH="/pages/admin/compte/liste.xhtml"
+    TARGET="rules:#pages#admin#compte#liste.xhtml" TITLE="comptes" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="info::#pages#info.xhtml" NAME="output6"
     PATH="/pages/info.xhtml" TARGET="rules:#pages#info.xhtml"
     TITLE="info" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="compteForm::#pages#admin#compte#formulaire.xhtml" NAME="output7"
+    PATH="/pages/admin/compte/formulaire.xhtml"
+    TARGET="rules:#pages#admin#compte#formulaire.xhtml"
+    TITLE="compteForm" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#pages#admin#compte#liste.xhtml"
-  PATH="/pages/admin/compte/liste.xhtml" SHAPE="328,152,50,25" model-entity="JSFProcessGroup"/>
+  PATH="/pages/admin/compte/liste.xhtml" SHAPE="344,160,50,25" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#pages#info.xhtml" PATH="/pages/info.xhtml"
   SHAPE="344,224,50,25" model-entity="JSFProcessGroup" persistent="true"/>
  <PROCESS-ITEM NAME="rules:#pages#home.xhtml" PATH="/pages/home.xhtml"
@@ -36,4 +44,7 @@
   SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#pages#profil.xhtml"
   PATH="/pages/profil.xhtml" SHAPE="304,641,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#admin#compte#formulaire.xhtml"
+  PATH="/pages/admin/compte/formulaire.xhtml" SHAPE="96,296,50,25"
+  model-entity="JSFProcessGroup" persistent="true"/>
 </PROCESS>

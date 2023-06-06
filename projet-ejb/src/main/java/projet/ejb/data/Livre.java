@@ -11,18 +11,18 @@ import javax.persistence.*;
  *
  */
 @Entity
-
+@Table(name="livre")
 public class Livre implements Serializable {
 
 	@Id
 	@GeneratedValue( strategy = IDENTITY)
 	@Column( name = "idLivre")
-	private int			id;
+	private int		id;
 	
 	@Column( name = "isbn")
 	private String isbn;
 	private static final long serialVersionUID = 1L;
-
+	
 	public Livre() {
 		super();
 	}   

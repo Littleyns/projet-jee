@@ -19,4 +19,9 @@ public interface IServiceLivres {
 
 	List<DtoLivre>	listerTout() ;
 
+	List<DtoLivre> listerTout(String query);
+
+
+	void addReply(DtoCompte u, DtoLivre l, String reply, int note);
+
 }

@@ -71,7 +71,7 @@
    <ul  class="books-ln cs-hidden">
    	<li>
    	<div class="latest_box"> 
-   	 	 	<h:commandLink action="${modelHome.openPopup(livre)}" onclick="popup.show()">
+   	 	 	<h:commandLink action="${modelPopup.openPopup(livre)}" onclick="popup.show()">
  	 		<f:ajax render="popup_container" />
  	 			<div class="latest_b_img"><h:graphicImage url="${livre.image}" alt="${livre.nom}"></h:graphicImage></div>
 		</h:commandLink>

@@ -26,7 +26,7 @@ import projet.jsf.data.mapper.IMapper;
 @SuppressWarnings("serial")
 @SessionScoped
 @Named
-public class ModelHome implements Serializable {
+public class ModelPopup implements Serializable {
 
 	List<Livre> livres;
 
@@ -36,18 +36,31 @@ public class ModelHome implements Serializable {
 	private IMapper			mapper;
 	
 	private Livre selectedBook;
+	
+	private boolean popupOpen;
 
 	// Getters 
 	
-	public List<Livre> getLivres() {
-		if ( livres == null ) {
-			livres = new ArrayList<>();
-			for(DtoLivre dtoLivre: serviceLivres.listerTout()) {
-				livres.add(mapper.map(dtoLivre));
-			}
-		}
-		return livres;
+	public String openPopup(Livre livre) {
+	    this.selectedBook = livre;
+	    System.out.println(livre.getNom());
+	    return null;
 	}
+	public void setPopupOpen(boolean popupOpen) {
+		this.popupOpen = popupOpen;
+	}
+	public Livre getSelectedBook() {
+		return selectedBook;
+	}
+	public void setSelectedBook(Livre selectedBook) {
+		this.selectedBook = selectedBook;
+	}
+	
+	public boolean isPopupOpen() {
+		return popupOpen;
+	}
+	
+	
 
 	}	
 

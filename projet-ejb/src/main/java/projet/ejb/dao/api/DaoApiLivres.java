@@ -35,6 +35,7 @@ public class DaoApiLivres implements IDaoApiLivres {
 
 	final static String GGL_API_KEY = "AIzaSyBywUVAvQ9dw6Nmhzlwlv-EZyaf8lbZ7GQ";
 	final static String GGL_API_ISBN_SEARCH_URL = "https://www.googleapis.com/books/v1/volumes?q=isbn:";
+	final static String GGL_API_QUERY_URL = "https://www.googleapis.com/books/v1/volumes?q=";
 
 	@Override
 	public ResponseApiNY getNYApiBooks() {
@@ -83,6 +84,30 @@ public class DaoApiLivres implements IDaoApiLivres {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		return null;
+	}@Override
+	public ResponseApiGGL getGGLApiBookByQuery(String query) {
+		try {
+			HttpURLConnection connection = (HttpURLConnection) new URL(GGL_API_QUERY_URL+query).openConnection();
+
+			// Configuration de la connexion
+			connection.setRequestMethod("GET");
+
+			// Récupération de la réponse de la requête
+			int responseCode = connection.getResponseCode();
+			BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+			String inputLine;
+			StringBuilder response = new StringBuilder();
+			while ((inputLine = reader.readLine()) != null) {
+				response.append(inputLine);
+			}
+			reader.close();
+			ObjectMapper objectMapper = new ObjectMapper();
+			return objectMapper.readValue(response.toString(), ResponseApiGGL.class);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	
 		return null;
 	}
 

@@ -9,6 +9,7 @@ import java.util.Map;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
@@ -26,7 +27,7 @@ import projet.jsf.data.Livre;
 import projet.jsf.data.mapper.IMapper;
 
 @SuppressWarnings("serial")
-@ViewScoped
+@SessionScoped
 @Named
 public class ModelGenres implements Serializable {
 

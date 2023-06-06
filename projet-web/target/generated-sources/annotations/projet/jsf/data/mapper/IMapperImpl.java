@@ -11,7 +11,7 @@ import projet.jsf.data.Livre;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-05-31T14:12:53+0200",
+    date = "2023-06-06T18:04:01+0200",
     comments = "version: 1.5.3.Final, compiler: Eclipse JDT (IDE) 1.4.100.v20220318-0906, environment: Java 18.0.2 (Eclipse Adoptium)"
 )
 @ApplicationScoped

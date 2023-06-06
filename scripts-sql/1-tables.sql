@@ -26,4 +26,80 @@ CREATE TABLE role (
 	FOREIGN KEY (IdCompte) REFERENCES compte (IdCompte),
 	PRIMARY KEY (IdCompte, Role)
 );
+CREATE TABLE livre (
+	lvr_id smallserial NOT NULL,
+	lvr_isbn varchar NOT NULL,
+	lvr_resume varchar NOT NULL,
+	CONSTRAINT livre_pk PRIMARY KEY (lvr_id),
+	CONSTRAINT livre_un UNIQUE (lvr_isbn)
+);
 
+
+-- projet.user_friend definition
+
+-- Drop table
+
+-- DROP TABLE projet.user_friend;
+
+CREATE TABLE user_friend (
+	usr_id_1 int2 NOT NULL,
+	usr_id_2 int2 NOT NULL,
+	friend_accepted bool NULL,
+	CONSTRAINT user_friend_pk PRIMARY KEY (usr_id_1, usr_id_2),
+	CONSTRAINT users_friend_fk_u1 FOREIGN KEY (usr_id_1) REFERENCES projet.compte(idcompte),
+	CONSTRAINT users_friend_fk_u2 FOREIGN KEY (usr_id_2) REFERENCES projet.compte(idcompte)
+);
+
+
+-- projet."role" definition
+
+-- Drop table
+
+-- DROP TABLE projet."role";
+
+
+-- projet.user_favori definition
+
+-- Drop table
+
+-- DROP TABLE projet.user_favori;
+
+CREATE TABLE user_favori (
+	fav_id smallserial NOT NULL,
+	usr_id int2 NOT NULL,
+	lvr_id int2 NOT NULL,
+	CONSTRAINT user_favori_pk PRIMARY KEY (fav_id),
+	CONSTRAINT user_favori_un UNIQUE (usr_id, lvr_id),
+	CONSTRAINT user_favori_fk FOREIGN KEY (usr_id) REFERENCES projet.compte(idcompte),
+	CONSTRAINT user_favori_fk_un FOREIGN KEY (lvr_id) REFERENCES projet.livre(lvr_id)
+);
+
+
+-- projet.users_comments definition
+
+-- Drop table
+
+-- DROP TABLE projet.users_comments;
+
+CREATE TABLE users_comments (
+	cmt_id smallserial NOT NULL,
+	usr_id int2 NOT NULL,
+	lvr_id int2 NOT NULL,
+	cmt_date date NOT NULL,
+	cmt_description varchar NOT NULL,
+	cmt_note int4 NOT NULL,
+	CONSTRAINT users_comments_pk PRIMARY KEY (cmt_id),
+	CONSTRAINT users_comments_fk_livre FOREIGN KEY (lvr_id) REFERENCES projet.livre(lvr_id),
+	CONSTRAINT users_comments_fk_user FOREIGN KEY (usr_id) REFERENCES projet.compte(idcompte)
+);
+
+CREATE TABLE user_emprunt (
+    id SERIAL PRIMARY KEY,
+    accepted BOOLEAN,
+    lvr_id INTEGER,
+    idcompte1 INTEGER,
+    idcompte2 INTEGER,
+    FOREIGN KEY (lvr_id) REFERENCES livre (lvr_id),
+    FOREIGN KEY (idcompte1) REFERENCES compte (idcompte),
+    FOREIGN KEY (idcompte2) REFERENCES compte (idcompte)
+);

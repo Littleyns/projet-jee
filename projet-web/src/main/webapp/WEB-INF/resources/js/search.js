@@ -56,7 +56,7 @@ async function getAndShowBookData(volumeId){
         console.log(data)
       }})
 }
-$("#enter").click(function(e){
+/*$("#enter").click(function(e){
   e.preventDefault();
    query = document.getElementById('search').value
     document.getElementById('search').value = ''
@@ -75,7 +75,7 @@ $("#enter").click(function(e){
    //end ajax success function
     
  
-}) 
+}) */
     //get the info for the query out of the search bar and turn it
     //into the URL to feed to the AJAX call
    

@@ -14,7 +14,7 @@ public class ApiDataMapper {
 		return new DtoLivre(rBook.getTitle(),rBook.getDescription(),rBook.getBook_image(),rBook.getAuthor());
 	}
 	public DtoLivre mapGGL(ResponseApiGGL.Item.Book rBook) {
-		String imgLink = rBook.getImageLinks() != null ?  rBook.getImageLinks().getThumbnail() : "";
-		return new DtoLivre(rBook.getTitle(),rBook.getDescription(),imgLink,rBook.getAuthors()[0]);
+		String imgLink = rBook.getImageLinks() != null ?  rBook.getImageLinks().getThumbnail() : "https://m.media-amazon.com/images/I/31owm8jIVVL._AC_UF1000,1000_QL80_.jpg";
+		return new DtoLivre(rBook.getTitle(),rBook.getDescription(),imgLink,rBook.getAuthors()!=null ? rBook.getAuthors()[0]: "unknownAuthor");
 	}
 }

@@ -20,4 +20,4 @@ $code$;
 
 CREATE USER projet WITH PASSWORD 'projet';
 GRANT CREATE ON DATABASE postgres TO projet;
-
+GRANT ALL PRIVILEGES ON DATABASE postgres TO projet;

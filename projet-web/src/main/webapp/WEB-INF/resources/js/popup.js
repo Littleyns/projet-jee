@@ -33,14 +33,6 @@ const closePopup = () => {
 //
 
 //close popup on click on close btn
-closeBtn.addEventListener('click', (e) => {
-	closePopup();
-})
-//close popup on click anywhere out of popup
-overlay.addEventListener('click', (e) => {
-	e.stopPropagation();
-	closePopup();
-})
 
 // on click on favorite button (heart)
 $('#favorite').click(() => {
@@ -174,5 +166,4 @@ popup.show = () => {
 }
 
 $(document).ready(()=>{
-	
 })

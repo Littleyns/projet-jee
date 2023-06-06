@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
@@ -23,7 +24,7 @@ import projet.jsf.data.Livre;
 import projet.jsf.data.mapper.IMapper;
 
 @SuppressWarnings("serial")
-@ViewScoped
+@SessionScoped
 @Named
 public class ModelHome implements Serializable {
 
@@ -46,22 +47,6 @@ public class ModelHome implements Serializable {
 			}
 		}
 		return livres;
-	}
-	public String openPopup(Livre livre) {
-	    this.selectedBook = livre;
-	    System.out.println(livre.getNom());
-	    return null;
-	}
-	public Livre getSelectedBook() {
-		return selectedBook;
-	}
-	public void setSelectedBook(Livre selectedBook) {
-		this.selectedBook = selectedBook;
-	}
-	
-	public boolean isPopupOpen() {
-		System.out.println("loool");
-		return this.selectedBook != null;
 	}
 
 	}	

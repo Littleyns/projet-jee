@@ -11,7 +11,7 @@
 
 	<ui:define name="contenu">
 		<div class="overlay"></div>
-		<div class="popup"></div>
+		<ui:include src="../components/popup.xhtml" />
 
 		<div class="search">
 			<div class="row mt-5" id="Search-bar">
@@ -19,18 +19,40 @@
 
 					<h1 class="text-center mb-4" id="title">Search a book here</h1>
 
-					<div class="form-group">
-
-						<input type="text" id="search" name="search" class="form-control"
-							placeholder="Ex: JavaScript , Machine learning , Python programming...!" />
-
-						<button class="btn btn-dark" id="enter">Search</button>
-					</div>
-
+					<h:form class="form-group">
+					
+						<h:inputText id="search" name="search" class="form-control search_btn" value="#{modelSearch.query}">
+						</h:inputText>
+									<h:commandButton class="btn btn-dark" action="#{modelSearch.searchBook()}" value="Search">
+			</h:commandButton>
+					</h:form>
+					<script>
+					document.getElementsByClassName("search_btn")[0].placeholder="Ex: Clean Code, Tintin , Machine learning , Python...!";
+					</script>
 
 				</div>
 			</div>
-			<div id="book-list"></div>
+			<div id="book-list">
+			<h:form>
+
+ 	<ui:repeat value="${modelSearch.booksQueried}" var="livre">
+   <ul  class="books-ln cs-hidden">
+   	<li>
+   	<div class="latest_box"> 
+   	 	 	<h:commandLink action="${modelPopup.openPopup(livre)}" onclick="popup.show()">
+ 	 		<f:ajax render="popup_container" />
+ 	 			<div class="latest_b_img"><h:graphicImage url="${livre.image}" alt="${livre.nom}"></h:graphicImage></div>
+		</h:commandLink>
+   
+   	<div class="latest_b_text">
+   		<strong><h:outputText value="${livre.nom}"></h:outputText></strong>
+   		<p class="authors"><h:outputText value="${livre.author}"></h:outputText></p>
+   	</div>
+   	</div></li>
+   	</ul>
+</ui:repeat>
+</h:form>
+			</div>
 
 		</div>
 		  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

@@ -12,6 +12,7 @@ public interface IDaoApiLivres {
 
 	ResponseApiNY getNYApiBooks();
 	ResponseApiGGL getGGLApiBook(String isbn);
+	ResponseApiGGL getGGLApiBookByQuery(String query);
 	
 	//Fonction pour avoir les livres ordonnées par categories
 

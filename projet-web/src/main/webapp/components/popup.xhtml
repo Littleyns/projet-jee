@@ -9,10 +9,11 @@
 	</f:metadata>
 	<h:head>
 		<h:outputStylesheet name="popup.css" library="css" />
+		
 	</h:head>
 	<div class="overlay"></div>
-	<h:panelGroup id="popup_container"
-		style="visibility: #{modelHome.popupOpen ? 'visible' : 'hidden'};">
+	
+	<h:panelGroup id="popup_container">
 		<!--Bouton fermer -->
 		<div id="popup_header">
 
@@ -20,7 +21,7 @@
 			<!--Titre du Livre -->
 
 			<h2 id="titlePop">
-				<h:outputText value="${modelHome.selectedBook.nom}"></h:outputText>
+				<h:outputText value="${modelPopup.selectedBook.nom}"></h:outputText>
 			</h2>
 			<button type="button" class="btn-close close" aria-label="Close"></button>
 		</div>
@@ -28,7 +29,7 @@
 
 		<div id="midPop">
 			<!--Image du livre -->
-			<h:graphicImage id="imgPop" url="${modelHome.selectedBook.image}">
+			<h:graphicImage id="imgPop" url="${modelPopup.selectedBook.image}">
 			</h:graphicImage>
 
 
@@ -41,9 +42,9 @@
 				<input id="isbn" style="display: none;" name="isbn"></input>
 				<ul>
 					<li id="authors"><strong>Authors: </strong> <span><h:outputText
-								value="${modelHome.selectedBook.author}" /></span></li>
+								value="${modelPopup.selectedBook.author}" /></span></li>
 					<li id="description"><strong>Description: </strong> <span><h:outputText
-								value="${modelHome.selectedBook.resume}" /></span></li>
+								value="${modelPopup.selectedBook.resume}" /></span></li>
 					<li id="links"></li>
 					<li id="links2"></li>
 					<h:form rendered="${compteActif.loggedIn}">
@@ -64,6 +65,17 @@
 					<script>
 						$("#success-favorites-add").hide();
 						$("#success-favorites-remove").hide();
+						document.getElementsByClassName('close')[0].addEventListener('click', (e) => {
+							e.stopPropagation();
+								closePopup();
+							})
+							//close popup on click anywhere out of popup
+							document.getElementsByClassName('overlay')[0].addEventListener('click', (e) => {
+								e.stopPropagation();
+								closePopup();
+							})
+							popup.show();
+													
 					</script>
 				</div>
 			</div>
@@ -111,7 +123,7 @@
 
 
 	</h:panelGroup>
-
-	<h:outputScript name="popup.js" library="js" />
+<h:outputScript name="popup.js" library="js" />
+	
 </ui:composition>
 

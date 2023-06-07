@@ -1,5 +1,7 @@
 package projet.ejb.data;
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
@@ -15,6 +17,7 @@ public class Livre implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue( strategy = IDENTITY)
 	@Column(name="lvr_id")
 	private Integer lvrId;
 
@@ -37,6 +40,10 @@ public class Livre implements Serializable {
 	private List<UsersComment> usersComments;*/
 
 	public Livre() {
+	}
+	public Livre(String isbn, String resume) {
+		this.lvrIsbn = isbn;
+		this.lvrResume = resume;
 	}
 
 	public Integer getLvrId() {

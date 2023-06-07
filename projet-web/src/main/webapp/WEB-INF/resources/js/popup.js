@@ -59,25 +59,7 @@ function reinitializeCommentaryAndRate() {
 }
 var spinnerLoadingHtml = '<div id="loading-replies"><div class="spinner-border" role="status"><span class="sr-only">Loading...</span></div></div>'
 let commentaires = document.getElementById('commentaryArea');
-$("#replyForm").submit(function(event) {
 
-	event.preventDefault();
-	commentaires.innerHTML = spinnerLoadingHtml;
-	var rate = Object.values(document.querySelectorAll(".rating>input")).filter(c => c.checked)[0];
-	var rate = rate ? rate.id : 1;
-
-	$.post("Services/commentaires.php?action=postReply", { commentaire: $("#commentaire").val(), isbn: $("#isbn").val() + "", rate: rate }).done(() => {
-
-
-
-		$.post("/Services/commentaires.php?action=getReplies", { isbn: isbn.value + "" }).done((d) => {
-			commentaires.innerHTML = d;
-			reinitializeCommentaryAndRate();
-		});
-	});
-
-
-});
 
 
 
@@ -163,7 +145,22 @@ popup.show = () => {
 	overlay.style.visibility = 'visible';
 	overlay.style.opacity = '1';
 	document.getElementById('popup_container').style.visibility = 'visible';
+	var replyRateArea = document.getElementsByClassName("reply-rating");
+for (var i = 0; i < replyRateArea.length; i++) {
+	  var rate = parseInt(replyRateArea[i].getElementsByTagName("input")[0].value);
+	  for (var j = 0; j < rate; j++) {
+	    var label = document.createElement("label");
+	    label.innerHTML = "&#9733;";
+	    replyRateArea[i].appendChild(label);
+	  }
+	  for (var j = 0; j < 5-rate; j++) {
+	    var label = document.createElement("label");
+	    label.innerHTML = "☆";
+	    replyRateArea[i].appendChild(label);
+	  }
+}
 }
 
 $(document).ready(()=>{
+	
 })

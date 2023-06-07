@@ -15,14 +15,17 @@ import javax.inject.Inject;
 
 import projet.commun.dto.DtoCompte;
 import projet.commun.dto.DtoLivre;
+import projet.commun.dto.DtoUsersComment;
 import projet.commun.exception.ExceptionValidation;
 import projet.commun.service.IServiceLivres;
 import projet.ejb.dao.IDaoApiLivres;
 import projet.ejb.dao.IDaoCompte;
+import projet.ejb.dao.IDaoLivre;
 import projet.ejb.dao.IDaoUsersComment;
 import projet.ejb.dao.api.ResponseApiGGL;
 import projet.ejb.dao.api.ResponseApiNY;
 import projet.ejb.data.Compte;
+import projet.ejb.data.Livre;
 import projet.ejb.data.UsersComment;
 import projet.ejb.data.mapper.ApiDataMapper;
 import projet.ejb.data.mapper.IMapperEjb;
@@ -40,6 +43,8 @@ public class ServiceLivre implements IServiceLivres {
 	private IDaoUsersComment daoUsersComment;
 	@Inject
 	private ApiDataMapper apiMapper;
+	@Inject
+	private IDaoLivre daoLivre;
 	@Override
 	public int inserer(DtoLivre dtoLivre) throws ExceptionValidation {
 		// TODO Auto-generated method stub
@@ -90,7 +95,17 @@ public class ServiceLivre implements IServiceLivres {
 	
 	@Override
 	public void addReply(DtoCompte u, DtoLivre l, String reply, int note) {
-		daoUsersComment.inserer(new UsersComment());
+		Livre livre = daoLivre.retrouverOuInserer(l.getIsbn());
+		daoUsersComment.inserer(new UsersComment(mapper.map(u),livre,reply,note));
+	}
+	@Override
+	public List<DtoUsersComment> listerCommentaires(DtoLivre map) {
+		List<DtoUsersComment> res = new ArrayList<>();
+		for(UsersComment u:daoLivre.listerCommentaires(daoLivre.retrouver(map.getIsbn()))) {
+			res.add(mapper.map(u));
+		}
+		return res;
+		
 	}
 
 

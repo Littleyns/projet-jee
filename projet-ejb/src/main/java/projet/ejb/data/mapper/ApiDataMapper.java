@@ -11,10 +11,10 @@ import projet.ejb.dao.api.ResponseApiNY;
 @Local
 public class ApiDataMapper {
 	public DtoLivre mapNY(ResponseApiNY.Book rBook) {
-		return new DtoLivre(rBook.getTitle(),rBook.getDescription(),rBook.getBook_image(),rBook.getAuthor());
+		return new DtoLivre(rBook.getTitle(),rBook.getDescription(),rBook.getBook_image(),rBook.getAuthor(),rBook.getIsbns().get(0).getIsbn13());
 	}
 	public DtoLivre mapGGL(ResponseApiGGL.Item.Book rBook) {
 		String imgLink = rBook.getImageLinks() != null ?  rBook.getImageLinks().getThumbnail() : "https://m.media-amazon.com/images/I/31owm8jIVVL._AC_UF1000,1000_QL80_.jpg";
-		return new DtoLivre(rBook.getTitle(),rBook.getDescription(),imgLink,rBook.getAuthors()!=null ? rBook.getAuthors()[0]: "unknownAuthor");
+		return new DtoLivre(rBook.getTitle(),rBook.getDescription(),imgLink,rBook.getAuthors()!=null ? rBook.getAuthors()[0]: "unknownAuthor",rBook.getIndustryIdentifiers()[0].getIdentifier());
 	}
 }

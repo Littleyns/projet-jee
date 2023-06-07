@@ -11,7 +11,7 @@ public class DtoCompte implements Serializable  {
 	
 	// Champs
 	
-	private int			id;
+	private int			idcompte;
 	
 	private String		pseudo;
 	
@@ -28,7 +28,7 @@ public class DtoCompte implements Serializable  {
 	}
 
 	public DtoCompte(int id, String pseudo, String motDePasse, String email ) {
-		this.id = id;
+		this.idcompte = id;
 		this.pseudo = pseudo;
 		this.motDePasse = motDePasse;
 		this.email = email;
@@ -38,11 +38,11 @@ public class DtoCompte implements Serializable  {
 	// Getters & setters
 
 	public int getId() {
-		return id;
+		return idcompte;
 	}
 	
 	public void setId(int id) {
-		this.id = id;
+		this.idcompte = id;
 	}
 
 	public String getPseudo() {

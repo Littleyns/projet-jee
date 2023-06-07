@@ -24,5 +24,6 @@ public interface IMapper {
 	Compte update( @MappingTarget Compte target, Compte source );
 
 	Livre map(DtoLivre dtoLivre);
+	DtoLivre map(Livre livre);
 
 }

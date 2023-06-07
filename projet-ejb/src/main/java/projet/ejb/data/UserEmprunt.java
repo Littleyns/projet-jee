@@ -21,16 +21,16 @@ public class UserEmprunt implements Serializable {
 
 	@OneToOne
 	@JoinColumn(name="idcompte1")
-	private Compte compte1;
+	private int id1;
 	
 	@OneToOne
 	@JoinColumn(name="idcompte2")
-	private Compte compte2;
+	private int id2;
 
 	//bi-directional many-to-one association to Livre
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name="lvr_id")
-	private Livre livre;
+	private int idlivre;
 
 	public UserEmprunt() {
 	}
@@ -53,28 +53,30 @@ public class UserEmprunt implements Serializable {
 
 
 
-	public Compte getCompte1() {
-		return compte1;
+	public int getId1() {
+		return id1;
 	}
 
-	public void setCompte1(Compte compte1) {
-		this.compte1 = compte1;
+	public void setId1(int id1) {
+		this.id1 = id1;
 	}
 
-	public Compte getCompte2() {
-		return compte2;
+	public int getId2() {
+		return id2;
 	}
 
-	public void setCompte2(Compte compte2) {
-		this.compte2 = compte2;
+	public void setId2(int id2) {
+		this.id2 = id2;
 	}
 
-	public Livre getLivre() {
-		return this.livre;
+	public int getIdlivre() {
+		return idlivre;
 	}
 
-	public void setLivre(Livre livre) {
-		this.livre = livre;
+	public void setIdlivre(int idlivre) {
+		this.idlivre = idlivre;
 	}
+
+	 
 
 }

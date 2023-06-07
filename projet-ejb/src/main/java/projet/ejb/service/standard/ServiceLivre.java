@@ -87,12 +87,6 @@ public class ServiceLivre implements IServiceLivres {
 		}
 		return books;
 	}
-	
-	@Override
-	public void addReply(DtoCompte u, DtoLivre l, String reply, int note) {
-		daoUsersComment.inserer(new UsersComment());
-	}
-
 
 
 }

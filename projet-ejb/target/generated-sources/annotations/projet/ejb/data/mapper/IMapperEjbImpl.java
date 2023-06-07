@@ -5,11 +5,13 @@ import java.util.List;
 import javax.annotation.processing.Generated;
 import javax.enterprise.context.ApplicationScoped;
 import projet.commun.dto.DtoCompte;
+import projet.commun.dto.DtoUserEmprunt;
 import projet.ejb.data.Compte;
+import projet.ejb.data.UserEmprunt;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-06-07T22:35:48+0200",
+    date = "2023-06-07T23:50:04+0200",
     comments = "version: 1.5.3.Final, compiler: Eclipse JDT (IDE) 1.4.100.v20220318-0906, environment: Java 18.0.2 (Eclipse Adoptium)"
 )
 @ApplicationScoped
@@ -53,5 +55,33 @@ public class IMapperEjbImpl implements IMapperEjb {
         }
 
         return dtoCompte;
+    }
+
+    @Override
+    public DtoUserEmprunt map(UserEmprunt us) {
+        if ( us == null ) {
+            return null;
+        }
+
+        DtoUserEmprunt dtoUserEmprunt = new DtoUserEmprunt();
+
+        dtoUserEmprunt.setAccepted( us.getAccepted() );
+        dtoUserEmprunt.setId( us.getId() );
+
+        return dtoUserEmprunt;
+    }
+
+    @Override
+    public UserEmprunt map(DtoUserEmprunt e) {
+        if ( e == null ) {
+            return null;
+        }
+
+        UserEmprunt userEmprunt = new UserEmprunt();
+
+        userEmprunt.setId( e.getId() );
+        userEmprunt.setAccepted( e.getAccepted() );
+
+        return userEmprunt;
     }
 }

@@ -32,12 +32,22 @@ public class Livre implements Serializable {
 	private String author;
 	
 	private List<String> replies; //Change to replies
-
+	public String isbn;
 	
 	// Constructeurs
 	
 	public Integer getId() {
 		return id;
+	}
+
+
+	public String getIsbn() {
+		return isbn;
+	}
+
+
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
 	}
 
 

@@ -1,5 +1,7 @@
 package projet.ejb.data;
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
@@ -16,6 +18,7 @@ public class UsersComment implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue( strategy = IDENTITY)
 	@Column(name="cmt_id")
 	private Integer cmtId;
 
@@ -29,16 +32,25 @@ public class UsersComment implements Serializable {
 	@Column(name="cmt_note")
 	private Integer cmtNote;
 
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name="usr_id")
 	private Compte user;
 
 	//bi-directional many-to-one association to Livre
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name="lvr_id")
 	private Livre livre;
 
 	public UsersComment() {
+		
+	}
+	public UsersComment(Compte u, Livre l, String description, Integer note) {
+		System.out.println(u.getId());
+		this.livre =l;
+		this.user =u;
+		this.cmtDescription = description;
+		this.cmtNote = note;
+		this.cmtDate = new Date();
 	}
 
 	public Integer getCmtId() {

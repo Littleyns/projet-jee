@@ -15,7 +15,7 @@ public class Compte implements Serializable  {
 	
 	// Champs
 	
-	Integer		id;
+	Integer		idcompte;
 	
 	@NotBlank( message = "Le pseudo doit être renseigné")
 	@Size(max=25, message = "Valeur trop longue pour le pseuo : 25 car. maxi" )
@@ -40,7 +40,7 @@ public class Compte implements Serializable  {
 	
 	public Compte(Integer id, String pseudo, String motDePasse, String email) {
 		super();
-		this.id = id;
+		this.idcompte = id;
 		this.pseudo = pseudo;
 		this.motDePasse = motDePasse;
 		this.email = email;
@@ -50,11 +50,11 @@ public class Compte implements Serializable  {
 	// Getters & setters
 
 	public Integer getId() {
-		return id;
+		return idcompte;
 	}
 	
 	public void setId(Integer id) {
-		this.id = id;
+		this.idcompte = id;
 	}
 
 	public String getPseudo() {
@@ -99,7 +99,7 @@ public class Compte implements Serializable  {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id);
+		return Objects.hash(idcompte);
 	}
 
 	@Override
@@ -111,7 +111,7 @@ public class Compte implements Serializable  {
 		if (getClass() != obj.getClass())
 			return false;
 		var other = (Compte) obj;
-		return Objects.equals(id, other.id);
+		return Objects.equals(idcompte, other.idcompte);
 	}
 	
 }

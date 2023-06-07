@@ -3,16 +3,21 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:j="http://java.sun.com/jsp/jstl/core"
+	>
+	
+	
+	
 	<f:metadata>
 		<f:viewAction action="#{utilJsf.messageFromRequestAttribute()}" />
 	</f:metadata>
 	<h:head>
 		<h:outputStylesheet name="popup.css" library="css" />
-		
+
 	</h:head>
 	<div class="overlay"></div>
-	
+
 	<h:panelGroup id="popup_container">
 		<!--Bouton fermer -->
 		<div id="popup_header">
@@ -48,12 +53,13 @@
 					<li id="links"></li>
 					<li id="links2"></li>
 					<h:form rendered="${compteActif.loggedIn}">
-					
-						<h:selectBooleanCheckbox id="favorite" class='favorite-heart' style="visibility:hidden">
-							
+ 	 					
+						<h:selectBooleanCheckbox id="favorite" class='favorite-heart'
+							style="visibility:hidden" value="#{modelPopup.favorite}">
+							<f:ajax execute="favorite" render="popup_container" />
 						</h:selectBooleanCheckbox>
 						<h:outputLabel for='favorite'>&#9825;</h:outputLabel>
-						</h:form>
+					</h:form>
 				</ul>
 				<div id="favorite-alerts">
 					<div class="alert alert-light" id="success-favorites-add">
@@ -84,46 +90,90 @@
 			<!--Image du livre -->
 			<div id="commentaryArea">
 
-				<!-- affichage des commentaires Sql -->
+<ui:repeat 
+			value="#{modelPopup.commentaires}" var="comm" >
+			
+			<div class='commentaire'>
+					<div class='commentaireHeader'>
+						<div class='avatarandname'>
+							<img
+								src='https://pbs.twimg.com/profile_images/911523367492161536/XDOQPjqf_400x400.jpg'
+								width='50px' height='50px' id='avatar' />
+							<div id='user-time'>
+								<strong class='username'><h:outputText
+										value="${comm.userPseudo}" /></strong>
+								<time class='date'>${comm.cmtDate}</time>
+							</div>
+						</div>
 
+					</div>
+					<div class="reply-rating">
+<input type="text" style="visibility:hidden;width:0;height:0;" value="${comm.cmtNote}"/>
+
+					</div>
+					<div class='commentaireContent'>
+						<p>${comm.cmtDescription}</p>
+					</div>
+					</div>
+</ui:repeat>
+				
+					<!-- affichage des commentaires Sql -->
+
+<script>
+
+
+		
+		
+	
+</script>
+				</div>
 
 			</div>
 
-		</div>
+			<h:panelGroup rendered="${compteActif.loggedIn}" class="container">
+				<h:form id="replyForm">
+					<div class="form-group">
 
-		<h:panelGroup rendered="${compteActif.loggedIn}" class="container"> 
-			<form id="replyForm" method="post">
-
-				<div class="form-group">
-					<label for="comment">Add a comment:</label>
-					<textarea name="commentaire" class="form-control" id="comment" rows="3" style="resize: none;"></textarea>
-				</div>
-				<div class="rating">
-					<input type="radio" name="rating" value="5" id="5"/><label
-						for="5">☆</label> <input type="radio" name="rating" value="4"
-						id="4"/><label for="4">☆</label> <input type="radio"
-						name="rating" value="3" id="3"/><label for="3">☆</label> <input
-						type="radio" name="rating" value="2" id="2"/><label for="2">☆</label>
-					<input type="radio" name="rating" value="1" id="1"/><label for="1">☆</label>
-				</div>
-				<div>
-					<button type="submit" name="commenter" class="btn btn-dark">Submit
-						a comment</button>
-				</div>
-
-				<input id="valuePage" style="display: none" name="valuePage"></input>
-			</form>
-
-
-		</h:panelGroup>
-		<h:panelGroup rendered="${!compteActif.loggedIn}">
-			<p style='text-align:center;font-size:20px;margin-top:30px;'><h:link outcome="login" value="Log in"></h:link> to reply</p>
-		</h:panelGroup>
+						<label for="comment">Add a comment:</label>
+						<h:inputTextarea value="#{modelPopup.reply}" name="commentaire"
+							class="form-control" id="comment" rows="3" style="resize: none;">
+						</h:inputTextarea>
+					</div>
+					<div class="rating">
+						<input type="radio" name="rating" value="5" id="5" /><label
+							for="5">☆</label> <input type="radio" name="rating" value="4"
+							id="4" /><label for="4">☆</label> <input type="radio"
+							name="rating" value="3" id="3" /><label for="3">☆</label> <input
+							type="radio" name="rating" value="2" id="2" /><label for="2">☆</label>
+						<input type="radio" name="rating" value="1" id="1" /><label
+							for="1">☆</label>
+					</div>
+					<div>
+						<h:commandButton name="commenter" class="btn btn-dark"
+							action="#{modelPopup.sendReply()}" value="Submit a comment">
+						</h:commandButton>
+						<h:inputText value="#{modelPopup.note}" class="livre_note"
+							style="visibility:hidden" />
+						<script>
+			document.getElementsByName("rating").forEach(r=>r.addEventListener("click",e=>{document.getElementsByClassName("livre_note")[0].value=e.target.value}))
+			</script>
 
 
+					</div>
 
+					<input id="valuePage" style="display: none" name="valuePage"></input>
+				</h:form>
+
+
+			</h:panelGroup>
+			<h:panelGroup rendered="${!compteActif.loggedIn}">
+				<p style='text-align: center; font-size: 20px; margin-top: 30px;'>
+					<h:link outcome="login" value="Log in"></h:link>
+					to reply
+				</p>
+			</h:panelGroup>
 	</h:panelGroup>
-<h:outputScript name="popup.js" library="js" />
-	
+	<h:outputScript name="popup.js" library="js" />
+
 </ui:composition>
 

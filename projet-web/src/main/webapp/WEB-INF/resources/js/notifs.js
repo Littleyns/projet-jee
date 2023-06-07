@@ -1,10 +1,7 @@
 const myDropDown = document.getElementById("myDropdown");
 
 //Refreshing notifs
-getNotifs()
-setInterval(()=>{
-  getNotifs()
-},10000)
+processNotifsUI();
   
 
 document.getElementById("notif_container").addEventListener("click", (e)=>{
@@ -19,11 +16,9 @@ function myFunction() {
   document.getElementById("myDropdown").classList.toggle("show");
 }
 
-async function getNotifs(){
-  let username = document.getElementsByClassName("user_name")[0].textContent
-  fetch("/Controller/notifController.php?renderNotifs").then(r=>r.text()).then(h=>{
-    if(h.trim()!=""){
-      myDropDown.innerHTML = h;
+function processNotifsUI(){
+	let myDropDown = document.getElementById("myDropdown");
+    if(myDropDown.innerHTML!=""){
       $(".bi-bell").addClass("ring-bell");
       $(".bi-bell-fill").addClass("ring-bell");
     }else{
@@ -32,7 +27,7 @@ async function getNotifs(){
       $(".bi-bell-fill").removeClass("ring-bell");
     }
    
-  })
+  
   
 }
 

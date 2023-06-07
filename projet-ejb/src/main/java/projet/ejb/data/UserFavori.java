@@ -1,5 +1,7 @@
 package projet.ejb.data;
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 import java.io.Serializable;
 import javax.persistence.*;
 
@@ -15,6 +17,7 @@ public class UserFavori implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue( strategy = IDENTITY)
 	@Column(name="fav_id")
 	private Integer favId;
 
@@ -28,6 +31,10 @@ public class UserFavori implements Serializable {
 	private Livre livre;
 
 	public UserFavori() {
+	}
+	public UserFavori(Compte u, Livre l) {
+		this.usrId = u;
+		this.livre = l;
 	}
 
 	public Integer getFavId() {

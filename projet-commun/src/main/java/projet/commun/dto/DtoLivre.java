@@ -21,12 +21,15 @@ public class DtoLivre implements Serializable  {
 	
 	private String image;
 	
-	public DtoLivre(String nom, String resume, String image, String author) {
+	private String isbn;
+	
+	public DtoLivre(String nom, String resume, String image, String author, String isbn) {
 		super();
 		this.nom = nom;
 		this.resume = resume;
 		this.image = image;
 		this.author = author;
+		this.isbn = isbn;
 	}
 
 	private List<String> replies; // change to array of replies
@@ -85,6 +88,14 @@ public class DtoLivre implements Serializable  {
 
 	public void setAuthor(String author) {
 		this.author = author;
+	}
+
+	public String getIsbn() {
+		return isbn;
+	}
+
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
 	}
 	
 

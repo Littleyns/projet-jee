@@ -25,4 +25,4 @@ INSERT INTO role (idcompte, role) VALUES
 ( 1, 'UTILISATEUR' ),
 ( 2, 'UTILISATEUR' ),
 ( 3, 'UTILISATEUR' );
- 
+

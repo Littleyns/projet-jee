@@ -11,7 +11,7 @@ import projet.jsf.data.Livre;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-06-07T22:36:07+0200",
+    date = "2023-06-07T23:50:28+0200",
     comments = "version: 1.5.3.Final, compiler: Eclipse JDT (IDE) 1.4.100.v20220318-0906, environment: Java 18.0.2 (Eclipse Adoptium)"
 )
 @ApplicationScoped
@@ -117,6 +117,7 @@ public class IMapperImpl implements IMapper {
 
         Livre livre = new Livre();
 
+        livre.setIsbn( dtoLivre.getIsbn() );
         livre.setId( dtoLivre.getId() );
         livre.setNom( dtoLivre.getNom() );
         livre.setResume( dtoLivre.getResume() );
@@ -129,5 +130,35 @@ public class IMapperImpl implements IMapper {
         livre.setAuthor( dtoLivre.getAuthor() );
 
         return livre;
+    }
+
+    @Override
+    public DtoLivre map(Livre livre) {
+        if ( livre == null ) {
+            return null;
+        }
+
+        String author = null;
+        String image = null;
+        String isbn = null;
+        String nom = null;
+        String resume = null;
+
+        author = livre.getAuthor();
+        image = livre.getImage();
+        isbn = livre.getIsbn();
+        nom = livre.getNom();
+        resume = livre.getResume();
+
+        DtoLivre dtoLivre = new DtoLivre( nom, resume, image, author, isbn );
+
+        dtoLivre.setCategorie( livre.getCategorie() );
+        dtoLivre.setId( livre.getId() );
+        List<String> list = livre.getReplies();
+        if ( list != null ) {
+            dtoLivre.setReplies( new ArrayList<String>( list ) );
+        }
+
+        return dtoLivre;
     }
 }

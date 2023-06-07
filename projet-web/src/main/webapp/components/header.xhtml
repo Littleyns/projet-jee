@@ -9,8 +9,6 @@
 	<meta name="X-UA-Compatible" content="IE-edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<h:outputStylesheet name="header.css" library="css" />
-	<h:outputStylesheet name="header_notifs.css" library="css" />
-	<h:outputStylesheet name="notifs.css" library="css" />
 
 	<link rel="stylesheet"
 		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
@@ -46,7 +44,9 @@
 
 		<h:panelGroup class="username" rendered="#{compteActif.loggedIn}">
 			<div id="notif_container">
-				<div id='myDropdown' class='dropdown-content'></div>
+				
+					<ui:include src="../components/notifs.xhtml" />
+				
 				<svg xmlns='http://www.w3.org/2000/svg' width='30' height='30'
 					fill='currentColor' class='bi bi-bell-fill' viewBox='0 0 16 16'>
   <path
@@ -90,6 +90,7 @@
 
 
 <h:outputScript name="notifs.js" library="js" />
+
 	</html>
 
 

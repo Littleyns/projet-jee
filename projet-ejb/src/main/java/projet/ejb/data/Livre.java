@@ -1,5 +1,7 @@
 package projet.ejb.data;
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
@@ -15,6 +17,7 @@ public class Livre implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue( strategy = IDENTITY)
 	@Column(name="lvr_id")
 	private Integer lvrId;
 
@@ -23,6 +26,9 @@ public class Livre implements Serializable {
 
 	@Column(name="lvr_resume")
 	private String lvrResume;
+	
+	@Column(name="lvr_nom")
+	private String lvrNom;
 
 	//bi-directional many-to-one association to UserEmprunt
 	/*@OneToMany(mappedBy="livre")
@@ -37,6 +43,11 @@ public class Livre implements Serializable {
 	private List<UsersComment> usersComments;*/
 
 	public Livre() {
+	}
+	public Livre(String isbn, String resume,String nom) {
+		this.lvrIsbn = isbn;
+		this.lvrResume = resume;
+		this.lvrNom = nom;
 	}
 
 	public Integer getLvrId() {
@@ -61,6 +72,12 @@ public class Livre implements Serializable {
 
 	public void setLvrResume(String lvrResume) {
 		this.lvrResume = lvrResume;
+	}
+	public String getLvrNom() {
+		return lvrNom;
+	}
+	public void setLvrNom(String lvrNom) {
+		this.lvrNom = lvrNom;
 	}
 
 

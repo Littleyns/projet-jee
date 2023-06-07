@@ -13,7 +13,7 @@ dropbtn {
 
 .dropdown {
   position: relative;
-  
+  bottom:20px;
   display: inline-block;
 }
 
@@ -46,9 +46,12 @@ dropbtn {
 #myDropdown{
   height:auto;
   background-color:#f1f1f1;
-  min-height:10%;
+  height:auto;
+  max-height:25%;
   width:20%;
   padding:1%;
+  position:absolute;
+  top:2rem;
 }
 
 .ring-bell{

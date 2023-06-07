@@ -33,8 +33,13 @@
 			<li><h:link outcome="home" value="Home" /></li>
 			<li><h:link outcome="genres" value="Genres" /></li>
 			<li><h:link outcome="search" value="Search" /></li>
+			<h:panelGroup rendered="${compteActif.isInRole('ADMINISTRATEUR')}">
+				<li><h:link outcome="comptes" value="Comptes" /></li>
+				<li><h:link outcome="compteForm" value="Ajouter un compte" /></li>
+			</h:panelGroup>
 			<li><h:link outcome="login" value="Login"
 					rendered="${!compteActif.loggedIn}" /></li>
+
 		</ul>
 
 		<h:panelGroup class="username" rendered="#{compteActif.loggedIn}">
@@ -57,17 +62,24 @@
 				style='display: flex; align-items: center; width: 100%'>
 
 				<div>
-				<h:link outcome="profil">
-					<img class='profile_link'
-						src='https://pbs.twimg.com/profile_images/911523367492161536/XDOQPjqf_400x400.jpg'
-						style='border-radius: 50%;' width='50px' height='50px' id='avatar' />
-				</h:link></div>
-				<div><span class='user_name'><h:outputText value="${compteActif.pseudo}"></h:outputText></span></div>
-				<div style="margin-left:2%"><h:form id="decform">
-					<h:commandButton action="#{compteActif.disconnect()}"
-						value="Déconnexion" class="deconnex" />
+					<h:link outcome="profil">
+						<img class='profile_link'
+							src='https://pbs.twimg.com/profile_images/911523367492161536/XDOQPjqf_400x400.jpg'
+							style='border-radius: 50%;' width='50px' height='50px'
+							id='avatar' />
+					</h:link>
+				</div>
+				<div>
+					<span class='user_name'><h:outputText
+							value="${compteActif.pseudo}"></h:outputText></span>
+				</div>
+				<div style="margin-left: 2%">
+					<h:form id="decform">
+						<h:commandButton action="#{compteActif.disconnect()}"
+							value="Déconnexion" class="deconnex" />
 
-				</h:form></div>
+					</h:form>
+				</div>
 			</div>
 		</h:panelGroup>
 

@@ -53,10 +53,10 @@
 					<li id="links"></li>
 					<li id="links2"></li>
 					<h:form rendered="${compteActif.loggedIn}">
-
+ 	 					
 						<h:selectBooleanCheckbox id="favorite" class='favorite-heart'
-							style="visibility:hidden">
-
+							style="visibility:hidden" value="#{modelPopup.favorite}">
+							<f:ajax execute="favorite" render="popup_container" />
 						</h:selectBooleanCheckbox>
 						<h:outputLabel for='favorite'>&#9825;</h:outputLabel>
 					</h:form>

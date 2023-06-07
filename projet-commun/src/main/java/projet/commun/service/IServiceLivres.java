@@ -26,4 +26,10 @@ public interface IServiceLivres {
 
 	List<DtoUsersComment> listerCommentaires(DtoLivre map);
 
+	void addToFavorites(DtoCompte map, DtoLivre map2);
+
+	void removeFromFavorites(DtoCompte map, DtoLivre map2);
+
+	boolean bookIsFavorite(DtoCompte map, DtoLivre map2);
+
 }

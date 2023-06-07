@@ -30,6 +30,7 @@ CREATE TABLE livre (
 	lvr_id smallserial NOT NULL,
 	lvr_isbn varchar NOT NULL,
 	lvr_resume varchar NOT NULL,
+	lvr_nom varchar,
 	CONSTRAINT livre_pk PRIMARY KEY (lvr_id),
 	CONSTRAINT livre_un UNIQUE (lvr_isbn)
 );

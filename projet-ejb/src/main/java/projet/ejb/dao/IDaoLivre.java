@@ -18,4 +18,12 @@ public interface IDaoLivre {
 
 	List<UsersComment> listerCommentaires(Livre l);
 
+	void addToFavorites(Compte map, Livre livre);
+
+	void removeFromFavorites(Compte map, Livre livre);
+
+	boolean bookIsFavorite(Compte map, Livre livre);
+
+	Livre retrouverOuInserer(String isbn, String nom);
+
 }

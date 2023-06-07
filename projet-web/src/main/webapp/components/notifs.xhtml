@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<html>
+<h:head>
+	<meta name="X-UA-Compatible" content="IE-edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<h:outputStylesheet name="header_notifs.css" library="css" />
+
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" />
+
+</h:head>
+<body>
+<h:panelGroup id='myDropdown' class='dropdown-content'>
+<ui:repeat value="#{modelNotifs.listeDemandesAmi}" var="demandeAmi">
+	<div class='notification-friend-request' ><b>#{demandeAmi.demandeur.pseudo}</b> souhaiterai être votre ami<br/>
+	<h:form>
+	<h:commandButton class='accept_friend' value="Accepter" action="#{modelNotifs.accepter(demandeAmi)}">
+		</h:commandButton>
+		<h:commandButton class='refuse_friend' value="Refuser" action="#{modelNotifs.refuser(demandeAmi)}">
+		</h:commandButton>
+	</h:form>
+		</div>
+</ui:repeat>
+<ui:repeat value="#{modelNotifs.listeDemandesEmprunt}" var="demandeEmprunt">
+	<div class='notification-friend-request' ><b>${demandeEmprunt.compte1.pseudo}</b> souhaiterai être vous emprunter le livre<br/><b>${demandeEmprunt.livre.nom}</b>
+	<h:form>
+	<h:commandButton class='accept_friend' value="Accepter" action="#{modelNotifs.accepter(demandeEmprunt)}">
+		</h:commandButton>
+		<h:commandButton class='refuse_friend' value="Refuser" action="#{modelNotifs.refuser(demandeEmprunt)}">
+		</h:commandButton>
+	</h:form>
+		</div>
+</ui:repeat>
+	</h:panelGroup>
+</body>
+
+
+	</html>
+
+
+
+</ui:composition>

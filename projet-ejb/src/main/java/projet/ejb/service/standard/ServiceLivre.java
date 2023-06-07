@@ -95,7 +95,7 @@ public class ServiceLivre implements IServiceLivres {
 	
 	@Override
 	public void addReply(DtoCompte u, DtoLivre l, String reply, int note) {
-		Livre livre = daoLivre.retrouverOuInserer(l.getIsbn());
+		Livre livre = daoLivre.retrouverOuInserer(l.getIsbn(),l.getNom());
 		daoUsersComment.inserer(new UsersComment(mapper.map(u),livre,reply,note));
 	}
 	@Override
@@ -105,6 +105,24 @@ public class ServiceLivre implements IServiceLivres {
 			res.add(mapper.map(u));
 		}
 		return res;
+		
+	}
+	@Override
+	public void addToFavorites(DtoCompte map, DtoLivre map2) {
+		Livre livre = daoLivre.retrouverOuInserer(map2.getIsbn(),map2.getNom());
+		daoLivre.addToFavorites(mapper.map(map),livre);
+		
+	}
+	@Override
+	public void removeFromFavorites(DtoCompte map, DtoLivre map2) {
+		Livre livre = daoLivre.retrouverOuInserer(map2.getIsbn(),map2.getNom());
+		daoLivre.removeFromFavorites(mapper.map(map),livre);
+		
+	}
+	@Override
+	public boolean bookIsFavorite(DtoCompte map, DtoLivre map2) {
+		Livre livre = daoLivre.retrouverOuInserer(map2.getIsbn(),map2.getNom());
+		return daoLivre.bookIsFavorite(mapper.map(map),livre);
 		
 	}
 

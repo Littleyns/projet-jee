@@ -9,6 +9,9 @@ import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.faces.event.AbortProcessingException;
+import javax.faces.event.ValueChangeEvent;
+import javax.faces.event.ValueChangeListener;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -44,13 +47,15 @@ public class ModelPopup implements Serializable {
 	private String reply;
 	private Integer note = 0;
 	private List<DtoUsersComment> commentaires;
+	boolean favorite = false;
 
 	// Getters 
 	
 	public String openPopup(Livre livre) {
 	    this.selectedBook = livre;
 	    this.commentaires = null;
-	    System.out.println(livre.getNom());
+	    this.favorite = serviceLivres.bookIsFavorite(mapper.map(compteActif),mapper.map(this.selectedBook));
+	    System.out.println(favorite);
 	    return null;
 	}
 	public List<DtoUsersComment> getCommentaires() {
@@ -94,6 +99,19 @@ public class ModelPopup implements Serializable {
 	}
 	public void setNote(Integer note) {
 		this.note = note;
+	}
+	public boolean isFavorite() {
+		return favorite;
+		
+	}
+	public void setFavorite(boolean isFavorite) {
+		if(isFavorite) {
+			serviceLivres.addToFavorites(mapper.map(compteActif),mapper.map(this.selectedBook));
+		} else {
+			serviceLivres.removeFromFavorites(mapper.map(compteActif),mapper.map(this.selectedBook));
+		}
+		
+		this.favorite = isFavorite;
 	}
 	
 	

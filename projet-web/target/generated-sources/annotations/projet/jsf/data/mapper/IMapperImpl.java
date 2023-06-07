@@ -11,7 +11,7 @@ import projet.jsf.data.Livre;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-06-07T01:03:48+0200",
+    date = "2023-06-07T12:51:13+0200",
     comments = "version: 1.5.3.Final, compiler: Eclipse JDT (IDE) 1.4.100.v20220318-0906, environment: Java 18.0.2 (Eclipse Adoptium)"
 )
 @ApplicationScoped
@@ -25,10 +25,10 @@ public class IMapperImpl implements IMapper {
 
         Compte compte = new Compte();
 
-        compte.setEmail( source.getEmail() );
         compte.setId( source.getId() );
-        compte.setMotDePasse( source.getMotDePasse() );
         compte.setPseudo( source.getPseudo() );
+        compte.setMotDePasse( source.getMotDePasse() );
+        compte.setEmail( source.getEmail() );
         List<String> list = source.getRoles();
         if ( list != null ) {
             compte.setRoles( new ArrayList<String>( list ) );
@@ -67,10 +67,10 @@ public class IMapperImpl implements IMapper {
 
         Compte compte = new Compte();
 
-        compte.setEmail( source.getEmail() );
         compte.setId( source.getId() );
-        compte.setMotDePasse( source.getMotDePasse() );
         compte.setPseudo( source.getPseudo() );
+        compte.setMotDePasse( source.getMotDePasse() );
+        compte.setEmail( source.getEmail() );
         List<String> list = source.getRoles();
         if ( list != null ) {
             compte.setRoles( new ArrayList<String>( list ) );
@@ -85,10 +85,10 @@ public class IMapperImpl implements IMapper {
             return target;
         }
 
-        target.setEmail( source.getEmail() );
         target.setId( source.getId() );
-        target.setMotDePasse( source.getMotDePasse() );
         target.setPseudo( source.getPseudo() );
+        target.setMotDePasse( source.getMotDePasse() );
+        target.setEmail( source.getEmail() );
         if ( target.getRoles() != null ) {
             List<String> list = source.getRoles();
             if ( list != null ) {
@@ -117,17 +117,17 @@ public class IMapperImpl implements IMapper {
 
         Livre livre = new Livre();
 
-        livre.setAuthor( dtoLivre.getAuthor() );
-        livre.setCategorie( dtoLivre.getCategorie() );
-        livre.setId( dtoLivre.getId() );
-        livre.setImage( dtoLivre.getImage() );
         livre.setIsbn( dtoLivre.getIsbn() );
+        livre.setId( dtoLivre.getId() );
         livre.setNom( dtoLivre.getNom() );
+        livre.setResume( dtoLivre.getResume() );
+        livre.setCategorie( dtoLivre.getCategorie() );
+        livre.setImage( dtoLivre.getImage() );
         List<String> list = dtoLivre.getReplies();
         if ( list != null ) {
             livre.setReplies( new ArrayList<String>( list ) );
         }
-        livre.setResume( dtoLivre.getResume() );
+        livre.setAuthor( dtoLivre.getAuthor() );
 
         return livre;
     }

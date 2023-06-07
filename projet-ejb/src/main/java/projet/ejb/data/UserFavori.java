@@ -32,6 +32,10 @@ public class UserFavori implements Serializable {
 
 	public UserFavori() {
 	}
+	public UserFavori(Compte u, Livre l) {
+		this.usrId = u;
+		this.livre = l;
+	}
 
 	public Integer getFavId() {
 		return this.favId;

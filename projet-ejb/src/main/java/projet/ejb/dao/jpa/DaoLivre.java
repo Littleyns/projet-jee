@@ -16,6 +16,7 @@ import projet.ejb.dao.IDaoCompte;
 import projet.ejb.dao.IDaoLivre;
 import projet.ejb.data.Compte;
 import projet.ejb.data.Livre;
+import projet.ejb.data.UserFavori;
 import projet.ejb.data.UsersComment;
 
 
@@ -54,9 +55,9 @@ public class DaoLivre implements IDaoLivre {
 	}
 	
 	@Override
-	public Livre retrouverOuInserer(String isbn) {
+	public Livre retrouverOuInserer(String isbn, String nom) {
 		if(this.retrouver(isbn)==null) {
-			this.inserer(new Livre(isbn,"noresume"));
+			this.inserer(new Livre(isbn,"noresume",nom));
 		}
 		return this.retrouver(isbn);
 	}
@@ -68,6 +69,47 @@ public class DaoLivre implements IDaoLivre {
 		var query = em.createQuery( jpql, UsersComment.class );
 		query.setParameter("livre", l);
 		return query.getResultList();
+	}
+
+
+	@Override
+	public void addToFavorites(Compte map, Livre livre) {
+		em.persist(new UserFavori(map,livre));
+	}
+	@Override
+	public void removeFromFavorites(Compte map, Livre livre) {
+		var jpql = "SELECT f FROM UserFavori f WHERE f.livre=:livre AND f.usrId = :user";
+	    var query = em.createQuery( jpql, UserFavori.class );
+	    query.setParameter( "livre", livre );
+	    query.setParameter( "user", map );
+	    try {
+	    	em.remove(query.getSingleResult());
+	    } catch ( NoResultException e ) {
+	        e.printStackTrace();
+	    }
+		
+	}
+
+
+	@Override
+	public boolean bookIsFavorite(Compte map, Livre livre) {
+		var jpql = "SELECT f FROM UserFavori f WHERE f.livre=:livre AND f.usrId = :user";
+	    var query = em.createQuery( jpql, UserFavori.class );
+	    query.setParameter( "livre", livre );
+	    query.setParameter( "user", map );
+	    try {
+	    	UserFavori u = query.getSingleResult();
+	    	return true;
+	    } catch ( NoResultException e ) {
+	        return false;
+	    }
+	}
+
+
+	@Override
+	public Livre retrouverOuInserer(String isbn) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

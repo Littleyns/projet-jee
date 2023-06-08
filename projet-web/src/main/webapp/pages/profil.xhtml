@@ -17,9 +17,23 @@
 		<button type="button" class="collapsible">Mes livres</button>
 		<div class="content">
 			<div class="livres">
-				<p>
-				
-				</p>
+								<h:form>
+
+ 	<ui:repeat value="${modelFavori.listFavori}" var="item">
+   <ul  class="books-ln cs-hidden">
+   	<li>
+   	<div class="latest_box"> 
+   	 	
+ 	 <div class="latest_b_img"><h:graphicImage url="${item.livre.image}" alt="${item.livre.nom}"></h:graphicImage></div>
+   
+   	<div class="latest_b_text">
+   		<strong><h:outputText value="${item.livre.nom}"></h:outputText></strong>
+   		<p class="authors"><h:outputText value="${item.livre.author}"></h:outputText></p>
+   	</div>
+   	</div></li>
+   	</ul>
+</ui:repeat>
+</h:form>
 			</div>
 		</div>
 
@@ -61,9 +75,7 @@
 		<button type="button" class="collapsible">Notifications</button>
 		<div class="content">
 			<div class="livres_deMesAmis">
-				<p>
-					
-				</p>
+
 			</div>
 		</div>
 

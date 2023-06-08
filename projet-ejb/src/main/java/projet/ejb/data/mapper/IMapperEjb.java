@@ -6,11 +6,13 @@ import org.mapstruct.factory.Mappers;
 import projet.commun.dto.DtoCompte;
 import projet.commun.dto.DtoLivre;
 import projet.commun.dto.DtoUserEmprunt;
+import projet.commun.dto.DtoUserFavori;
 import projet.commun.dto.DtoUserFriend;
 import projet.commun.dto.DtoUsersComment;
 import projet.ejb.data.Compte;
 import projet.ejb.data.Livre;
 import projet.ejb.data.UserEmprunt;
+import projet.ejb.data.UserFavori;
 import projet.ejb.data.UserFriend;
 import projet.ejb.data.UsersComment;
 
@@ -44,6 +46,12 @@ public interface IMapperEjb {
 
 	UserEmprunt map(DtoUserEmprunt e);
 
+	UserFavori map(DtoUserFavori dtoUserFavori);
+	
+	DtoUserFavori map(UserFavori userFavori);
+	
+	UserFriend map(DtoUserFriend dtoUserFriend);
+	
 	
 	
 }

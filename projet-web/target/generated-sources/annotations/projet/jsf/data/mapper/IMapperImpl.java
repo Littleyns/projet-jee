@@ -6,12 +6,14 @@ import javax.annotation.processing.Generated;
 import javax.enterprise.context.ApplicationScoped;
 import projet.commun.dto.DtoCompte;
 import projet.commun.dto.DtoLivre;
+import projet.commun.dto.DtoUserFavori;
 import projet.jsf.data.Compte;
 import projet.jsf.data.Livre;
+import projet.jsf.data.UserFavori;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-06-07T23:50:28+0200",
+    date = "2023-06-08T01:05:58+0200",
     comments = "version: 1.5.3.Final, compiler: Eclipse JDT (IDE) 1.4.100.v20220318-0906, environment: Java 18.0.2 (Eclipse Adoptium)"
 )
 @ApplicationScoped
@@ -25,10 +27,10 @@ public class IMapperImpl implements IMapper {
 
         Compte compte = new Compte();
 
-        compte.setId( source.getId() );
-        compte.setPseudo( source.getPseudo() );
-        compte.setMotDePasse( source.getMotDePasse() );
         compte.setEmail( source.getEmail() );
+        compte.setId( source.getId() );
+        compte.setMotDePasse( source.getMotDePasse() );
+        compte.setPseudo( source.getPseudo() );
         List<String> list = source.getRoles();
         if ( list != null ) {
             compte.setRoles( new ArrayList<String>( list ) );
@@ -67,10 +69,10 @@ public class IMapperImpl implements IMapper {
 
         Compte compte = new Compte();
 
-        compte.setId( source.getId() );
-        compte.setPseudo( source.getPseudo() );
-        compte.setMotDePasse( source.getMotDePasse() );
         compte.setEmail( source.getEmail() );
+        compte.setId( source.getId() );
+        compte.setMotDePasse( source.getMotDePasse() );
+        compte.setPseudo( source.getPseudo() );
         List<String> list = source.getRoles();
         if ( list != null ) {
             compte.setRoles( new ArrayList<String>( list ) );
@@ -85,10 +87,10 @@ public class IMapperImpl implements IMapper {
             return target;
         }
 
-        target.setId( source.getId() );
-        target.setPseudo( source.getPseudo() );
-        target.setMotDePasse( source.getMotDePasse() );
         target.setEmail( source.getEmail() );
+        target.setId( source.getId() );
+        target.setMotDePasse( source.getMotDePasse() );
+        target.setPseudo( source.getPseudo() );
         if ( target.getRoles() != null ) {
             List<String> list = source.getRoles();
             if ( list != null ) {
@@ -117,19 +119,49 @@ public class IMapperImpl implements IMapper {
 
         Livre livre = new Livre();
 
-        livre.setIsbn( dtoLivre.getIsbn() );
-        livre.setId( dtoLivre.getId() );
-        livre.setNom( dtoLivre.getNom() );
-        livre.setResume( dtoLivre.getResume() );
+        livre.setAuthor( dtoLivre.getAuthor() );
         livre.setCategorie( dtoLivre.getCategorie() );
+        livre.setId( dtoLivre.getId() );
         livre.setImage( dtoLivre.getImage() );
+        livre.setIsbn( dtoLivre.getIsbn() );
+        livre.setNom( dtoLivre.getNom() );
         List<String> list = dtoLivre.getReplies();
         if ( list != null ) {
             livre.setReplies( new ArrayList<String>( list ) );
         }
-        livre.setAuthor( dtoLivre.getAuthor() );
+        livre.setResume( dtoLivre.getResume() );
 
         return livre;
+    }
+
+    @Override
+    public UserFavori map(DtoUserFavori dtoUserFavori) {
+        if ( dtoUserFavori == null ) {
+            return null;
+        }
+
+        UserFavori userFavori = new UserFavori();
+
+        userFavori.setFavId( dtoUserFavori.getFavId() );
+        userFavori.setLivre( map( dtoUserFavori.getLivre() ) );
+        userFavori.setUsrId( map( dtoUserFavori.getUsrId() ) );
+
+        return userFavori;
+    }
+
+    @Override
+    public DtoUserFavori map(UserFavori userFavori) {
+        if ( userFavori == null ) {
+            return null;
+        }
+
+        DtoUserFavori dtoUserFavori = new DtoUserFavori();
+
+        dtoUserFavori.setFavId( userFavori.getFavId() );
+        dtoUserFavori.setLivre( map( userFavori.getLivre() ) );
+        dtoUserFavori.setUsrId( map( userFavori.getUsrId() ) );
+
+        return dtoUserFavori;
     }
 
     @Override

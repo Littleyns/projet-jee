@@ -105,7 +105,13 @@ public class DaoLivre implements IDaoLivre {
 	    }
 	}
 
-
+	public List<UserFavori> listerToutUrilisateur(Compte compte){
+		var jpql = "SELECT f FROM UserFavori f WHERE f.usrId = :user";
+	    var query = em.createQuery( jpql, UserFavori.class );
+	    query.setParameter( "user", compte );
+	    return query.getResultList();
+	}
+	
 	@Override
 	public Livre retrouverOuInserer(String isbn) {
 		// TODO Auto-generated method stub

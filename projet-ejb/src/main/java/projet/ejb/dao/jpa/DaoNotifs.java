@@ -115,7 +115,5 @@ public class DaoNotifs implements IDaoNotifs {
 		query.setParameter("compte2", mapper.map(e.getCompte2()));
 		return query.getSingleResult();
 	}
-
-
 	
 }

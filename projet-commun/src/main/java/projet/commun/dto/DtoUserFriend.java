@@ -2,6 +2,7 @@ package projet.commun.dto;
 
 import java.io.Serializable;
 
+@SuppressWarnings("serial")
 public class DtoUserFriend implements Serializable {
 	private Boolean friendAccepted;
 	private DtoCompte demandeur;
@@ -12,6 +13,14 @@ public class DtoUserFriend implements Serializable {
 		this.friendAccepted = friendAccepted;
 		this.demandeur = demandeur;
 		this.demande = demande;
+	}
+
+	public Boolean getFriendAccepted() {
+		return friendAccepted;
+	}
+
+	public void setFriendAccepted(Boolean friendAccepted) {
+		this.friendAccepted = friendAccepted;
 	}
 
 	public DtoCompte getDemandeur() {

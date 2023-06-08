@@ -37,6 +37,12 @@ public class UserEmprunt implements Serializable {
 
     public UserEmprunt() {
     }
+    public UserEmprunt(Compte c1, Compte c2, Livre l,boolean accepted) {
+    	this.compte1 = c1;
+    	this.compte2 = c2;
+    	this.accepted = accepted;
+    	this.livre = l;
+    }
 
     public Integer getId() {
         return this.id;

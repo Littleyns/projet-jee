@@ -18,4 +18,6 @@ public interface IServiceCompte {
 
 	List<DtoCompte>	listerTout() ;
 
+	void envoyerDemande(DtoCompte demandeur, String email);
+
 }

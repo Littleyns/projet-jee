@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import projet.commun.dto.DtoUserFriend;
+import projet.commun.service.IServiceCompte;
 import projet.commun.service.IServiceNotifs;
 import projet.jsf.data.mapper.IMapper;
 import projet.jsf.util.CompteActif;
@@ -20,12 +21,17 @@ public class ModelDemandeAmi implements Serializable {
 
     @EJB
     private IServiceNotifs serviceNotifs;
+    
+    @EJB
+    private IServiceCompte serviceCompte;
 
     @Inject
     private IMapper mapper;
 
     @Inject
     private CompteActif compteActif;
+    
+    private String emailDemande;
 
     public String getAmiUsername() {
         return amiUsername;
@@ -35,7 +41,15 @@ public class ModelDemandeAmi implements Serializable {
         this.amiUsername = amiUsername;
     }
 
-    public void envoyerDemandeAmi() {
-   
+    public String getEmailDemande() {
+		return emailDemande;
+	}
+
+	public void setEmailDemande(String emailDemande) {
+		this.emailDemande = emailDemande;
+	}
+
+	public void envoyerDemandeAmi() {
+    	serviceCompte.envoyerDemande(mapper.map(compteActif), emailDemande);
     }
 }

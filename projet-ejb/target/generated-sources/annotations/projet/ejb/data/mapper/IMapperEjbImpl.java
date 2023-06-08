@@ -5,19 +5,17 @@ import java.util.List;
 import javax.annotation.processing.Generated;
 import javax.enterprise.context.ApplicationScoped;
 import projet.commun.dto.DtoCompte;
-import projet.commun.dto.DtoLivre;
 import projet.commun.dto.DtoUserEmprunt;
 import projet.commun.dto.DtoUserFavori;
 import projet.commun.dto.DtoUserFriend;
 import projet.ejb.data.Compte;
-import projet.ejb.data.Livre;
 import projet.ejb.data.UserEmprunt;
 import projet.ejb.data.UserFavori;
 import projet.ejb.data.UserFriend;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-06-08T03:42:35+0200",
+    date = "2023-06-08T16:06:51+0200",
     comments = "version: 1.5.3.Final, compiler: Eclipse JDT (IDE) 1.4.100.v20220318-0906, environment: Java 18.0.2 (Eclipse Adoptium)"
 )
 @ApplicationScoped
@@ -92,7 +90,7 @@ public class IMapperEjbImpl implements IMapperEjb {
         userEmprunt.setCompte1( map( e.getCompte1() ) );
         userEmprunt.setCompte2( map( e.getCompte2() ) );
         userEmprunt.setId( e.getId() );
-        userEmprunt.setLivre( dtoLivreToLivre( e.getLivre() ) );
+        userEmprunt.setLivre( map( e.getLivre() ) );
 
         return userEmprunt;
     }
@@ -106,7 +104,7 @@ public class IMapperEjbImpl implements IMapperEjb {
         UserFavori userFavori = new UserFavori();
 
         userFavori.setFavId( dtoUserFavori.getFavId() );
-        userFavori.setLivre( dtoLivreToLivre( dtoUserFavori.getLivre() ) );
+        userFavori.setLivre( map( dtoUserFavori.getLivre() ) );
         userFavori.setUsrId( map( dtoUserFavori.getUsrId() ) );
 
         return userFavori;
@@ -140,15 +138,5 @@ public class IMapperEjbImpl implements IMapperEjb {
         userFriend.setFriendAccepted( dtoUserFriend.getFriendAccepted() );
 
         return userFriend;
-    }
-
-    protected Livre dtoLivreToLivre(DtoLivre dtoLivre) {
-        if ( dtoLivre == null ) {
-            return null;
-        }
-
-        Livre livre = new Livre();
-
-        return livre;
     }
 }

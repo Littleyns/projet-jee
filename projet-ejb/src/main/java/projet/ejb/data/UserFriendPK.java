@@ -20,6 +20,10 @@ public class UserFriendPK implements Serializable {
 
 	public UserFriendPK() {
 	}
+	public UserFriendPK(Integer u1, Integer u2) {
+		this.usrId1 = u1;
+		this.usrId2 = u2;
+	}
 	public Integer getUsrId1() {
 		return this.usrId1;
 	}

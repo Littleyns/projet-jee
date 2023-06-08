@@ -4,6 +4,7 @@ import java.util.List;
 
 import projet.commun.dto.DtoCompte;
 import projet.commun.dto.DtoLivre;
+import projet.commun.dto.DtoUserFavori;
 import projet.commun.dto.DtoUsersComment;
 import projet.commun.exception.ExceptionValidation;
 
@@ -31,5 +32,9 @@ public interface IServiceLivres {
 	void removeFromFavorites(DtoCompte map, DtoLivre map2);
 
 	boolean bookIsFavorite(DtoCompte map, DtoLivre map2);
+
+	List<DtoUserFavori> livresDesAmis(DtoCompte c);
+
+	void emprunter(DtoCompte c1, DtoCompte c2, DtoLivre l);
 
 }

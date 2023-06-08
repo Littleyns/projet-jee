@@ -1,5 +1,7 @@
 package projet.ejb.data;
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 import java.io.Serializable;
 import javax.persistence.*;
 
@@ -14,27 +16,33 @@ import javax.persistence.*;
 public class UserFriend implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@EmbeddedId
-	private UserFriendPK id;
+		@Id
+	@GeneratedValue( strategy = IDENTITY)
+		@Column(name ="IdUserFriend")
+	private Integer id;
 
 	@Column(name="friend_accepted")
 	private Boolean friendAccepted;
 
-	@JoinColumn(name="usr_id_1" , insertable = false, updatable = false)
+	@JoinColumn(name="usr_id_1" )
 	@OneToOne
 	private Compte demandeur;
-	@JoinColumn(name="usr_id_2" , insertable = false, updatable = false)
+	@JoinColumn(name="usr_id_2" )
 	@OneToOne
 	private Compte demande;
 	
 	public UserFriend() {
 	}
-
-	public UserFriendPK getId() {
+	public UserFriend(Compte demandeur, Compte demande, boolean accepted) {
+		this.demandeur = demandeur;
+		this.demande = demande;
+		this.friendAccepted= accepted;
+	}
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(UserFriendPK id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

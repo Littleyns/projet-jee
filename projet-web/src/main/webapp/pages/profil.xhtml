@@ -19,7 +19,7 @@
 			<div class="livres">
 								<h:form>
 
- 	<ui:repeat value="${modelFavori.listFavori}" var="item">
+ 	<ui:repeat value="${modelFavori.listeFavori}" var="item">
    <ul  class="books-ln cs-hidden">
    	<li>
    	<div class="latest_box"> 
@@ -40,12 +40,12 @@
 		<button type="button" class="collapsible">Ajouter un ami</button>
 		<div class="content">
 
-			<form class="form-horizontal" id="Formulaire-demande-ami"
+			<h:form class="form-horizontal" id="Formulaire-demande-ami"
 				method="post">
 				<div class="form-group">
 					<label class="control-label col-sm-2"> Email:</label>
 					<div class="col-sm-8">
-						<input type="email"
+						<h:inputText type="email" value="#{modelDemandeAmi.emailDemande}"
 							placeholder="Entrez l'email de l'utilisateur recherché"
 							class="form-control" id="email" name="email"/>
 					</div>
@@ -55,29 +55,38 @@
 
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
-						<input type="submit" name="demande" value="Envoyer la demande"
+						<h:commandButton action="#{modelDemandeAmi.envoyerDemandeAmi()}" name="demande" value="Envoyer la demande"
 							class="btn-default"/>
 					</div>
 				</div>
 
-			</form>
+			</h:form>
 		</div>
 
 		<button type="button" class="collapsible">Livres de mes amis</button>
+
 		<div class="content">
 			<div class="livres_deMesAmis">
-				<p>
-					
-				</p>
+						<ui:repeat value="#{modelLivre.livresAmis}" var="item">
+		  <ul  class="books-ln cs-hidden">
+   	<li>
+   	<div class="latest_box"> 
+   	 	
+ 	 <div class="latest_b_img"><h:graphicImage url="${item.livre.image}" alt="${item.livre.nom}"></h:graphicImage></div>
+   
+   	<div class="latest_b_text">
+   		<strong><h:outputText value="${item.livre.nom}"></h:outputText></strong>
+   		<p class="authors">De l'ami <strong><h:outputText value="${item.usrId.pseudo}"></h:outputText></strong></p>
+   		<h:form><h:commandButton action="#{modelLivre.emprunter(item.usrId,item.livre)}" value="emprunter"></h:commandButton></h:form>
+   		
+   	</div>
+   	</div></li>
+   	</ul>
+		</ui:repeat>
 			</div>
 		</div>
 		
-		<button type="button" class="collapsible">Notifications</button>
-		<div class="content">
-			<div class="livres_deMesAmis">
 
-			</div>
-		</div>
 
 		  <h:outputScript name="profil.js" library="js" />
 	</ui:define>

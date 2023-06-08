@@ -97,5 +97,10 @@ public class ServiceCompte implements IServiceCompte {
 			throw new ExceptionValidation(message.toString().substring(1));
 		}
 	}
+	
+	@Override
+	public void envoyerDemande(DtoCompte demandeur, String email) {		
+		daoCompte.demanderAmi(mapper.map(demandeur), email);
+	}
 
 }

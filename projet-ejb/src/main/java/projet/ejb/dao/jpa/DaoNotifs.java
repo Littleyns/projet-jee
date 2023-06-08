@@ -76,6 +76,7 @@ public class DaoNotifs implements IDaoNotifs {
 		var query = em.createQuery( jpql, UserFriend.class );
 		query.setParameter("compte", mapper.map(f.getDemande()));
 		query.setParameter("compte2", mapper.map(f.getDemandeur()));
+		query.setMaxResults(1);
 		return query.getSingleResult();
 	}
 
@@ -109,10 +110,12 @@ public class DaoNotifs implements IDaoNotifs {
 	@Override
 	public UserEmprunt retrouver(DtoUserEmprunt e) {
 		em.clear();
-		var jpql = "SELECT f FROM UserEmprunt f WHERE f.compte1 = :compte AND f.compte2 = :compte2";
+		var jpql = "SELECT f FROM UserEmprunt f WHERE f.compte1 = :compte AND f.compte2 = :compte2 AND f.livre.id = :livre";
 		var query = em.createQuery( jpql, UserEmprunt.class );
 		query.setParameter("compte", mapper.map(e.getCompte1()));
 		query.setParameter("compte2", mapper.map(e.getCompte2()));
+		query.setParameter("livre", e.getLivre().getId());
+		query.setMaxResults(1);
 		return query.getSingleResult();
 	}
 	

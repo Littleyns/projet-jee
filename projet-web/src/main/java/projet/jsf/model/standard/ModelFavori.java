@@ -28,7 +28,7 @@ public class ModelFavori {
 	private CompteActif compteActif;
 
 	
-	public List<DtoUserFavori> getListFavori(){
+	public List<DtoUserFavori> getListeFavori(){
 		listeFavori = serviceUserFavori.listerTout(compteActif.getId());
 		return listeFavori;
 	}

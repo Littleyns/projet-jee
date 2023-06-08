@@ -15,6 +15,7 @@ import javax.inject.Inject;
 
 import projet.commun.dto.DtoCompte;
 import projet.commun.dto.DtoLivre;
+import projet.commun.dto.DtoUserFavori;
 import projet.commun.dto.DtoUsersComment;
 import projet.commun.exception.ExceptionValidation;
 import projet.commun.service.IServiceLivres;
@@ -26,6 +27,7 @@ import projet.ejb.dao.api.ResponseApiGGL;
 import projet.ejb.dao.api.ResponseApiNY;
 import projet.ejb.data.Compte;
 import projet.ejb.data.Livre;
+import projet.ejb.data.UserFavori;
 import projet.ejb.data.UsersComment;
 import projet.ejb.data.mapper.ApiDataMapper;
 import projet.ejb.data.mapper.IMapperEjb;
@@ -124,6 +126,20 @@ public class ServiceLivre implements IServiceLivres {
 		Livre livre = daoLivre.retrouverOuInserer(map2.getIsbn(),map2.getNom());
 		return daoLivre.bookIsFavorite(mapper.map(map),livre);
 		
+	}
+	
+	@Override
+	public List<DtoUserFavori> livresDesAmis(DtoCompte c){
+		List<DtoUserFavori> l = new ArrayList<>();
+		for(UserFavori li: daoLivre.livresDesAmis(mapper.map(c))) {
+			l.add(mapper.map(li));
+		}
+		return l;
+	}
+	
+	@Override
+	public void emprunter(DtoCompte c1, DtoCompte c2, DtoLivre l) {
+		this.daoLivre.emprunte(mapper.map(c1), mapper.map(c2), mapper.map(l));
 	}
 
 

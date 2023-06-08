@@ -32,6 +32,9 @@ public interface IMapperEjb {
 	default DtoLivre map(Livre l) {
 		return new DtoLivre(l.getLvrNom(),l.getLvrResume(),"","",l.getLvrIsbn());
 	}
+	default Livre map(DtoLivre l) {
+		return new Livre(l.getIsbn(),l.getResume(),l.getNom());
+	}
 
 
 	default DtoUsersComment map(UsersComment u) {

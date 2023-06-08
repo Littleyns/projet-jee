@@ -14,6 +14,7 @@ import javax.persistence.PersistenceContext;
 
 import projet.ejb.dao.IDaoCompte;
 import projet.ejb.data.Compte;
+import projet.ejb.data.UserFriend;
 
 
 @Stateless
@@ -86,6 +87,18 @@ public class DaoCompte implements IDaoCompte {
 	    query.setParameter( "pseudo", pseudo );
 	    query.setParameter( "idCompte", idCompte );
         return query.getSingleResult() == 0;
+	}
+	
+	@Override
+	@TransactionAttribute( MANDATORY )
+	public void demanderAmi( Compte demandeur, String demandeEmail )  {
+		Compte demande = null;
+		var jpql = "SELECT c FROM Compte c WHERE c.email = :email";
+		var query = em.createQuery( jpql, Compte.class );
+	    query.setParameter( "email", demandeEmail );
+	    demande = query.getSingleResult();
+	    System.out.println(demandeur);
+	    em.persist(new UserFriend(demandeur,demande,false));
 	}
 	
 }

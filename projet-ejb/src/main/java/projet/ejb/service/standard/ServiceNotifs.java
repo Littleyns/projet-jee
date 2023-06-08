@@ -11,6 +11,7 @@ import javax.ejb.TransactionAttribute;
 import javax.inject.Inject;
 
 import projet.commun.dto.DtoCompte;
+import projet.commun.dto.DtoLivre;
 import projet.commun.dto.DtoUserEmprunt;
 import projet.commun.dto.DtoUserFriend;
 import projet.commun.exception.ExceptionValidation;
@@ -90,6 +91,7 @@ public class ServiceNotifs implements IServiceNotifs {
 		daoNotifs.refuser(em);
 		
 	}
+
 
 
 }

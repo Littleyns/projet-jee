@@ -3,6 +3,7 @@ package projet.ejb.dao.jpa;
 import static javax.ejb.TransactionAttributeType.MANDATORY;
 import static javax.ejb.TransactionAttributeType.NOT_SUPPORTED;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Local;
@@ -16,13 +17,14 @@ import projet.ejb.dao.IDaoCompte;
 import projet.ejb.dao.IDaoLivre;
 import projet.ejb.data.Compte;
 import projet.ejb.data.Livre;
+import projet.ejb.data.UserEmprunt;
 import projet.ejb.data.UserFavori;
+import projet.ejb.data.UserFriend;
 import projet.ejb.data.UsersComment;
 
 
 @Stateless
 @Local
-@TransactionAttribute( MANDATORY )
 public class DaoLivre implements IDaoLivre {
 
 	
@@ -112,6 +114,43 @@ public class DaoLivre implements IDaoLivre {
 	    return query.getResultList();
 	}
 	
+	@Override
+	public List<UserFavori> livresDesAmis(Compte c){
+		List<Compte> amis = this.getAmis(c);
+		List<UserFavori> res = new ArrayList<>();
+		for(Compte ami: amis) {
+			var jpql = "SELECT u FROM UserFavori u WHERE u.usrId = :compte";
+		    var query = em.createQuery( jpql, UserFavori.class );
+		    query.setParameter( "compte", ami);
+		    res.addAll(query.getResultList());
+		}
+		
+	    return res;
+		
+		
+	}
+	@Override
+	@TransactionAttribute( NOT_SUPPORTED )
+	public List<Compte> getAmis( Compte c)  {
+		List<Compte> friends = new ArrayList<>();
+		var jpql = "SELECT c.demande FROM UserFriend c WHERE c.demandeur = :compte AND c.friendAccepted = true";
+		var query = em.createQuery( jpql, Compte.class );
+	    query.setParameter( "compte", c );
+	    friends.addAll(query.getResultList());
+	    var jpql1 = "SELECT c.demandeur FROM UserFriend c WHERE c.demande = :compte AND c.friendAccepted = true";
+		var query1 = em.createQuery( jpql1, Compte.class );
+	    query1.setParameter( "compte", c );
+	    friends.addAll(query1.getResultList());
+	    return friends;
+	}
+	
+	@Override
+	public void emprunte(Compte emprunteur, Compte a, Livre l) {
+		Livre l2 = this.retrouverOuInserer(l.getLvrIsbn(),l.getLvrNom());
+		em.persist(new UserEmprunt(emprunteur, a,l2,false));
+	}
+
+
 	@Override
 	public Livre retrouverOuInserer(String isbn) {
 		// TODO Auto-generated method stub

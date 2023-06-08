@@ -2,6 +2,7 @@ package projet.commun.service;
 
 import java.util.List;
 
+import projet.commun.dto.DtoCompte;
 import projet.commun.dto.DtoLivre;
 import projet.commun.dto.DtoUsersComment;
 import projet.commun.exception.ExceptionValidation;
